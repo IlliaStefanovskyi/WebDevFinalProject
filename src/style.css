@@ -7,6 +7,7 @@
     display:flex;
     flex-direction: column;
     margin: 5px;
+    text-decoration: none;
 }
 .petCard:hover{
     margin: 4px;
@@ -32,10 +33,12 @@
     font-size: 18px;
     font-family: "Delicious Handrawn", serif;
     font-weight: bold;
+    color:rgb(6, 7, 8);
 }
 .petDataOnCard{
     margin: 0px;
     font-family: "Atkinson Hyperlegible Next", serif;
+    color:black;
 }
 .notesOnCard{
     margin: 0px;
@@ -44,3 +47,77 @@
     font-family: "Atkinson Hyperlegible Next", serif;
 }
 /*Pet card by Illia ENDS HERE*/
+
+/*Header(navigation) by Illia*/
+header{
+    background-color: rgb(0, 0, 0);
+}
+body{
+    padding:0px;
+    margin:0px;
+}
+.mainNavigation{
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-between;
+}
+.navImage{
+    height:40px;
+    margin: 4px;
+}
+.navImage:hover{
+    height:38px;
+}
+.headerTextLinks{
+    text-decoration: none;
+    color:rgb(222, 222, 222);
+    font-family: "Atkinson Hyperlegible Next", serif;
+    font-weight: bold;
+}
+.headerTextLinks:hover{
+    color:rgb(223, 127, 0);
+}
+/*End header(navigation) by Illia ENDS HERE*/
+
+/*Footer by Illia*/
+footer{
+    background-color: rgb(58, 57, 57);
+    display: flex;
+    flex-direction: row;
+    font-family: "Atkinson Hyperlegible Next", serif;
+    color:rgb(178, 182, 186);
+}
+.leftFooterContainer{
+    width: 60%;
+}
+.rightFooterContainer{
+    width: 40%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.ourLocationIframe{
+    height:90%;
+    width: 90%;
+}
+.socMediaFooter{
+    width: 30%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+.footerSMImage{
+    height:40px;
+}
+.contactDataFooter{
+    margin: 10px;
+}
+.footerSMImage:hover{
+    height: 38px;
+}
+.footerEmailLink{
+    color:rgba(255, 157, 0, 0.647);
+}
+/*Footer by Illia ENDS HERE*/

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>catRescue</title>
     <link rel="stylesheet" href="style.css">
 <!--Fonts-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,15 +12,7 @@
 </head>
 <body>
     <?php require 'ComponentsCode/search.php'; ?>
-    <div id = "petLayoutContainer">
-        <?php
-        require 'ComponentsCode/petCard.php';
-        $catDesc = array("Bob","Larry","Win","Labs");
-        for($i = 0; $i < count($catDesc); $i++){
-            addCard("images/img". ($i + 1). ".jpg",$catDesc[$i],"Male | 1", "Notes");
-        }
-        ?>
-    </div>
+    
     <?php require 'ComponentsCode/footer.php'; ?>
 </body>
 </html>
