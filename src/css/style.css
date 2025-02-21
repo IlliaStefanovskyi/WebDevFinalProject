@@ -130,3 +130,42 @@ footer{
     justify-content: center;
 }
 /*Index page ENDS HERE*/
+
+/*About page*/
+.ourHistory img{
+    height: 200px;
+    margin: 50px;
+}
+.ourHistoryContainer{
+    display:flex;
+    justify-content: center;
+}
+.ourHistory{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 50px;
+    max-width: 1000px;
+}
+body{
+    font-family: "Atkinson Hyperlegible Next", serif;
+}
+.ourServicesHeader{
+    display: flex;
+    justify-content: center;
+}
+.ourServicesContainer{
+    display:flex;
+    justify-content: center;
+}
+.ourServices{
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+}
+.ourServices .left{
+    margin-right: 5%;
+}
+/*About page ENDS HERE*/
