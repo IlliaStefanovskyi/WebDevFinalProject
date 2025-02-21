@@ -121,3 +121,12 @@ footer{
     color:rgba(255, 157, 0, 0.647);
 }
 /*Footer by Illia ENDS HERE*/
+
+/*Index page*/
+#petLayoutContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/*Index page ENDS HERE*/
