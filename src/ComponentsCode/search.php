@@ -19,7 +19,7 @@
             <a class = "headerTextLinks" href = "about.php">About</a>
             <a class = "headerTextLinks" href = "catRescue.php">Cat rescue</a>
             <input type = "text" placeholder = "search cat">
-            <a class = "accountPageLinkHeader" href = "account.php">
+            <a class = "accountPageLinkHeader" href = "login.php">
                 <img class = "navImage" src = "images/accountPageIcon.png" alt = "Go to home page">
             </a>
         </nav>

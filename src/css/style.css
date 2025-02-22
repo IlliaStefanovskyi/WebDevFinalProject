@@ -169,3 +169,26 @@ body{
     margin-right: 5%;
 }
 /*About page ENDS HERE*/
+
+/*Login page*/
+.loginContainerOuter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:1000px;
+}
+.loginContainer{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.loginContainer .left{
+    margin-right: 100px;
+}
+.loginContainer p{
+    margin-bottom: 0px;
+}
+.loginContainer button{
+    margin-top: 10px;
+}
+/*Login page ENDS HERE*/
