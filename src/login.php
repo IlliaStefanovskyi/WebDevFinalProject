@@ -17,8 +17,8 @@
             
             <form method = "post" class = "left">
                 <h3>Log in</h3>
-                <p>Username</p>
-                <input type = "text" name = "loginUsername" required>
+                <p>Email</p>
+                <input type = "email" name = "loginEmail" required>
                 <p>Password</p>
                 <input type = "password" name = "loginPassword" required>
                 <div>
@@ -28,10 +28,14 @@
         
             <form method = "post" class = "right">
                 <h3>Sign up</h3>
+                <p>Full name</p>
+                <input type = "text" name = "signUpName" required>
+                <p>Aircode</p>
+                <input type = "text" name = "signUpAircode" required>
+                <p>Phone number</p>
+                <input type = "text" name = "signUpPNumber" required>
                 <p>Email</p>
                 <input type = "email" name = "signUpEmail" required>
-                <p>Username</p>
-                <input type = "text" name = "signUpUsername" required>
                 <p>Password</p>
                 <input type = "password" name = "signUpPassword" required>
                 <p>Confirm password</p>
