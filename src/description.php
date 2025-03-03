@@ -3,59 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Cat Descriptions</title>
     <link rel="stylesheet" href="css/style.css">
-<!--Fonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Delicious+Handrawn&display=swap" rel="stylesheet">
 </head>
 <body>
     <?php require 'ComponentsCode/search.php'; ?>
-        <h1>Max</h1>
-        <p>Cat breed: Domestic Shorthair</p>
-        <p>Color: Tuxedo</p>
-        <p>Gender: Male</p>
-        <p>Age: 3 years old</p>
-        <p>Weight: 10 lbs</p>
-        <p>Microchipped</p>
-        <p>Max is an incredibly friendly, gentle and intelligent cat. He gets along great with every animal. He really loves people, especially kids! He likes to gets a lot of pets, likes to nap a lot and follow the people around the house.He is also quite playful,loves chasing toys and climbing cat trees. Max is looking for a forever home, where he can be fully loved and getting cared of!</p>
+    
+    <?php
+    // Include cat data from data.php
+    require 'data/data.php';
+    
+    // Check if a cat name was clicked (using GET parameter)
+    $selectedCat = isset($_GET['cat']) ? $_GET['cat'] : null;
 
-        <h1>Bella</h1>
-        <p>Cat breed: Siamese</p>
-        <p>Color: White</p>
-        <p>Gender: Female</p>
-        <p>Age: 2 years old</p>
-        <p>Weight: 8 lbs</p>
-        <p>Microchipped</p>
-        <p>Bella is an elegant, playful and social cat. She enjoys climbing high places, playing with feather toys, and curling up in cozy spots. She is very affectionate and enjoys snuggling up in laps when she gets tired. Bella would thrive in a home where she can get plenty of playtime and attention from her humans! 
+    // Cat details array
+    $catDetails = [
+        "Bob" => ["image" => "img1.jpg", "breed" => "Domestic Shorthair", "color" => "Orange", "gender" => "Male", "age" => "3 years", "weight" => "10 lbs", "desc" => "Bob is a playful and affectionate cat who loves being around people. He enjoys climbing cat trees and chasing toys all day! Bob also has a curious side, always exploring new spots in the house and watching the outside world from the window. He is a social cat who loves cuddles and will follow you around wherever you go! He also enjoys sunbathing near the window and curling up in a warm blanket during cold days."],
+        "Larry" => ["image" => "img2.jpg", "breed" => "Black Cat", "color" => "Black", "gender" => "Male", "age" => "2 years", "weight" => "9 lbs", "desc" => "Larry is a curious and adventurous cat. He loves exploring every corner of the house and watching birds from the window. He has a playful personality and enjoys chasing laser pointers and playing hide and seek. Although shy at first, once he warms up, he will be your best friend and a loyal companion. Larry also loves sitting on high shelves and observing everything from above, making him the king of his domain."],
+        "Win" => ["image" => "img3.jpg", "breed" => "Tuxedo", "color" => "Black & White", "gender" => "Male", "age" => "4 years", "weight" => "12 lbs", "desc" => "Win is a gentle and loving cat who enjoys cuddling and playing with his favorite stuffed mouse toy. He is known for his calm and relaxed nature, often found lounging in sunny spots around the house. He loves gentle pets and enjoys curling up on your lap for a long nap. He also enjoys watching TV, especially nature documentaries featuring birds and fish!"],
+        "Labs" => ["image" => "img4.jpg", "breed" => "Mixed Breed", "color" => "Grey & White", "gender" => "Female", "age" => "1 year", "weight" => "7 lbs", "desc" => "Labs is a shy but sweet kitty who takes time to warm up but will be the most loyal companion once she trusts you. She enjoys playing with feather toys and curling up in cozy spots. She may be a little reserved, but her affectionate side shines when she gets comfortable in her surroundings. She loves nighttime zoomies and enjoys sneaking into small spaces to nap in peace!"],
+    ];
+    ?>
 
-        <h1>Leo</h1>
-        <p>Cat breed: Maine Coon</p>
-        <p>Color: Brown Tabby</p>
-        <p>Gender: Male</p>
-        <p>Age: 4 years old</p>
-        <p>Weight: 15 lbs</p>
-        <p>Microchipped</p>
-        <p>Leo is a big, fluffy and gentle giant with a heart of gold. He loves louging around, getting brushed, and sitting by the widnow watching birds. He is a very laid-back cat but still enjoys playtime, especially with string toys and cat tunnels. He gets along with every animal, making him a great addition to any family. His ideal would be one with lots of space to explore and plenty of comfy spots to nap!</p>
+    <div id="petLayoutContainer">
+        <?php foreach ($catDesc as $cat) : ?>
+            <a href="description.php?cat=<?= urlencode($cat) ?>#selectedCat" class="petCard">
+                <div class="petCardImageContainer">
+                    <img class="petCardImage" src="images/<?= $catDetails[$cat]['image'] ?>" alt="<?= $cat ?>">
+                </div>
+                <div class="petCardDescription">
+                    <p class="petNameOnCard"><?= $cat ?></p>
+                    <p class="petDataOnCard">Click to see details</p>
+                </div>
+            </a>
+        <?php endforeach; ?>
+    </div>
 
-        <h1>Daisy</h1>
-        <p>Cat breed: Russian Blue</p>
-        <p>Color: Silver-Grey</p>
-        <p>Gender: Female</p>
-        <p>Age: 1.5 years old</p>
-        <p>Weight: 7 lbs</p>
-        <p>Microchipped</p>
-        <p>Daisy is a quiet and sweet cat who loves to curl up next to her favourite human. She is a little shy at first, but once she warms up, she enjoys gentle pets and chin scratches. She loves soft blankets and will often knead them while purring happily. Daisy is looking for a patient and caring owner who will give her the love and comfort she deserves!</p>
+    <?php if ($selectedCat && isset($catDetails[$selectedCat])) : ?>
+        <div class="catDetails" id="selectedCat">
+            <h1><?= $selectedCat ?></h1>
+            <img src="images/<?= $catDetails[$selectedCat]['image'] ?>" alt="<?= $selectedCat ?>" style="width: 200px; border-radius: 10px; margin-bottom: 10px;">
+            <p><strong>Breed:</strong> <?= $catDetails[$selectedCat]['breed'] ?></p>
+            <p><strong>Color:</strong> <?= $catDetails[$selectedCat]['color'] ?></p>
+            <p><strong>Gender:</strong> <?= $catDetails[$selectedCat]['gender'] ?></p>
+            <p><strong>Age:</strong> <?= $catDetails[$selectedCat]['age'] ?></p>
+            <p><strong>Weight:</strong> <?= $catDetails[$selectedCat]['weight'] ?></p>
+            <p><?= $catDetails[$selectedCat]['desc'] ?></p>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("selectedCat").scrollIntoView({ behavior: "smooth" });
+            });
+        </script>
+    <?php endif; ?>
 
-        <h1>Milo</h1>
-        <p>Cat breed: Persian</p>
-        <p>Color: White</p>
-        <p>Gender: Male</p>
-        <p>Age: 6 years old</p>
-        <p>Weight: 12 lbs</p>
-        <p>Microchipped</p>
-        <p>Milo is a charming and affectionate Persian with the fluffiest coat! He enjoys laying on soft cushions, watching birds from the window, and getting pampered iwth gentle brushing sessions. He is bery relaxed and prefers a quiet home where he can get all the love and attention he craves. Milo is a perfect cat for someone who enjoys calm and peaceful lifestyle, where lazy afternoons and soft, warm cuddles make everyday a little more special!</p>
     <?php require 'ComponentsCode/footer.php'; ?>
 </body>
 </html>
