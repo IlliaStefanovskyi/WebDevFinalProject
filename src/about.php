@@ -29,7 +29,7 @@
                     sed erat non, euismod scelerisque nisi. Vestibulum elit orci, egestas ut 
                     posuere sit amet, ornare a enim. Maecenas eu volutpat sapien, at condimentum 
                     lacus. Nulla et odio id mi ultricies iaculis vel ut eros. Phasellus vulputate 
-                    turpis in neque semper posuere.</p>
+                    turpis in neque semper posuere</p>
             </div>
         </div>
     </div>
