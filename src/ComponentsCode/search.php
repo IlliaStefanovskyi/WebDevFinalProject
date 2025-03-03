@@ -18,8 +18,6 @@
             </a>
             <a class = "headerTextLinks" href = "about.php">About</a>
             <a class = "headerTextLinks" href = "catRescue.php">Cat rescue</a>
-            <a class = "headerTextLinks" href = "donate.php">Donate</a>
-            <a class = "headerTextLinks" href = "booking.php">booking</a>
             <input type = "text" placeholder = "search cat">
             <a class = "accountPageLinkHeader" href = "login.php">
                 <img class = "navImage" src = "images/accountPageIcon.png" alt = "Go to home page">
