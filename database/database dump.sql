@@ -26,12 +26,15 @@ CREATE TABLE `bookings` (
   `bookingId` int NOT NULL,
   `catId` int NOT NULL,
   `userId` int NOT NULL,
+  `employeeId` int NOT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`bookingId`),
   KEY `catId` (`catId`),
   KEY `userId` (`userId`),
+  KEY `employeeId` (`employeeId`),
   CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`catId`) REFERENCES `cats` (`catId`),
-  CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
+  CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`),
+  CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`employeeId`) REFERENCES `employees` (`employeeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +44,7 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
-INSERT INTO `bookings` VALUES (0,0,0,'2025-02-15 17:30:00');
+INSERT INTO `bookings` VALUES (0,0,0,0,'2025-02-15 17:30:00');
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,6 +57,7 @@ DROP TABLE IF EXISTS `cats`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cats` (
   `catId` int NOT NULL,
+  `image` longblob,
   `name` varchar(45) NOT NULL,
   `age` int DEFAULT NULL,
   `gender` varchar(45) DEFAULT NULL,
@@ -72,8 +76,34 @@ CREATE TABLE `cats` (
 
 LOCK TABLES `cats` WRITE;
 /*!40000 ALTER TABLE `cats` DISABLE KEYS */;
-INSERT INTO `cats` VALUES (0,'Lala',2,'Female','Maine Coon','Silver Tabby',4.75,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec scelerisque velit, vel aliquet tortor. \nVestibulum et euismod ante, maximus tincidunt odio. Suspendisse sodales scelerisque lacinia. Praesent mi \nlibero, molestie sed orci nec, luctus auctor mi. Maecenas in nisi eget enim vulputate convallis id quis purus. \nNam tempus iaculis elementum.','2025-02-10');
+INSERT INTO `cats` VALUES (0,NULL,'Lala',2,'Female','Maine Coon','Silver Tabby',4.75,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec scelerisque velit, vel aliquet tortor. \nVestibulum et euismod ante, maximus tincidunt odio. Suspendisse sodales scelerisque lacinia. Praesent mi \nlibero, molestie sed orci nec, luctus auctor mi. Maecenas in nisi eget enim vulputate convallis id quis purus. \nNam tempus iaculis elementum.','2025-02-10');
 /*!40000 ALTER TABLE `cats` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employees` (
+  `employeeId` int NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `jobTitle` varchar(45) NOT NULL,
+  `phoneNumber` varchar(10) NOT NULL,
+  PRIMARY KEY (`employeeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (0,'John Dobs','Assistant','0874653528');
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -91,6 +121,7 @@ CREATE TABLE `rescues` (
   `desCatName` varchar(45) DEFAULT NULL,
   `descriptionOfCat` varchar(10000) NOT NULL,
   `descriptionOfEvent` varchar(1000) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`rescueId`),
   KEY `userId` (`userId`),
   CONSTRAINT `rescues_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
@@ -103,6 +134,7 @@ CREATE TABLE `rescues` (
 
 LOCK TABLES `rescues` WRITE;
 /*!40000 ALTER TABLE `rescues` DISABLE KEYS */;
+INSERT INTO `rescues` VALUES (0,0,'St. Josephs Street','2025-02-03','Tuko','Rescued cat description from database received','description of rescue event from database received','pending');
 /*!40000 ALTER TABLE `rescues` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,4 +175,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-28  9:56:47
+-- Dump completed on 2025-03-04 19:21:09
