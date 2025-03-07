@@ -11,11 +11,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Delicious+Handrawn&display=swap" rel="stylesheet">
 </head>
 <body>
-    <?php require 'ComponentsCode/search.php'; ?>
+    <?php require 'ComponentsCode/header.php'; ?>
     <div id = "petLayoutContainer">
         <?php
         require 'ComponentsCode/petCard.php';
-        require 'data/data.php';
+        require 'data/values.php';
         for($i = 0; $i < count($catDesc); $i++){
             addCard("images/img". ($i + 1). ".jpg",$catDesc[$i],"Male | 1", "Notes");
         }

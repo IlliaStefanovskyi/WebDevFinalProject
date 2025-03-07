@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Delicious+Handrawn&display=swap" rel="stylesheet">
 </head>
 <body>
-    <?php require 'ComponentsCode/search.php'; ?>
+    <?php require 'ComponentsCode/header.php'; ?>
     <div class = "loginContainerOuter">
         <div class = "loginContainer">
             
@@ -29,17 +29,17 @@
             <form method = "post" class = "right">
                 <h3>Sign up</h3>
                 <p>Full name</p>
-                <input type = "text" name = "signUpName" required>
+                <input type = "text" name = "name" required>
                 <p>Aircode</p>
-                <input type = "text" name = "signUpAircode" required>
+                <input type = "text" name = "address" required>
                 <p>Phone number</p>
-                <input type = "text" name = "signUpPNumber" required>
+                <input type = "text" name = "phoneNum" required>
                 <p>Email</p>
-                <input type = "email" name = "signUpEmail" required>
+                <input type = "email" name = "email" required>
                 <p>Password</p>
-                <input type = "password" name = "signUpPassword" required>
+                <input type = "password" name = "password" required>
                 <p>Confirm password</p>
-                <input type = "password" name = "signUpPasswordConf" required>
+                <input type = "password" required>
                 <div>
                     <button type = "submit">Create account</button>
                 </div>
