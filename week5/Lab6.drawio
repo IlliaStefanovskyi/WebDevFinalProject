@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.16">
+  <diagram name="Page-1" id="BPb7KUuqTN_WfBmcmn8l">
+    <mxGraphModel dx="2113" dy="1115" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-6" value="User" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-306" y="-210" width="140" height="131" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-10" value="+userID&lt;div&gt;+email&lt;/div&gt;&lt;div&gt;+password&lt;/div&gt;&lt;div&gt;+name&lt;/div&gt;&lt;div&gt;+address&lt;/div&gt;&lt;div&gt;+phoneNum&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="NuwVipmZnlm5jZXnKbMI-6">
+          <mxGeometry y="30" width="140" height="101" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-11" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="NuwVipmZnlm5jZXnKbMI-6" source="NuwVipmZnlm5jZXnKbMI-10" target="NuwVipmZnlm5jZXnKbMI-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-12" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;+User(userId, email, password, name, address, phoneNum)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+getUserId()&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getEmail()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setEmail()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getName()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setName()&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-306" y="-82" width="140" height="163" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-13" value="Booking" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-541" y="-26" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-14" value="+bookingID&lt;br&gt;&lt;div&gt;+time&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="NuwVipmZnlm5jZXnKbMI-13">
+          <mxGeometry y="30" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-15" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="NuwVipmZnlm5jZXnKbMI-13" source="NuwVipmZnlm5jZXnKbMI-14" target="NuwVipmZnlm5jZXnKbMI-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-16" value="&lt;div style=&quot;&quot;&gt;+Booking(bookingId, time)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getBookingId()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getTIme()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setTIme()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-541" y="44" width="140" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-17" value="Cat" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-306" y="109" width="140" height="201" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-19" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="NuwVipmZnlm5jZXnKbMI-17" source="NuwVipmZnlm5jZXnKbMI-18" target="NuwVipmZnlm5jZXnKbMI-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-18" value="+catId&lt;div&gt;+catImage&lt;/div&gt;&lt;div&gt;+name&lt;/div&gt;&lt;div&gt;+age&lt;/div&gt;&lt;div&gt;+gender&lt;/div&gt;&lt;div&gt;+breed&lt;/div&gt;&lt;div&gt;+color&lt;/div&gt;&lt;div&gt;+weigjt&lt;/div&gt;&lt;div&gt;+description&lt;/div&gt;&lt;div&gt;+inboundDate&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="NuwVipmZnlm5jZXnKbMI-17">
+          <mxGeometry y="30" width="140" height="171" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-20" value="&lt;div style=&quot;&quot;&gt;+Cat(catId, catImage, name, age, gender, breed, color, weight, description, inboundDate)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getCatid()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getName&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setName&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getAge()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setAge()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-306" y="310" width="140" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-21" value="Employee" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-793" y="-58" width="140" height="133" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-22" value="+employeeId&lt;div&gt;+name&lt;/div&gt;&lt;div&gt;+j&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;obTitle&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+phoneNumber&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="NuwVipmZnlm5jZXnKbMI-21">
+          <mxGeometry y="30" width="140" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-23" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="NuwVipmZnlm5jZXnKbMI-21" source="NuwVipmZnlm5jZXnKbMI-22" target="NuwVipmZnlm5jZXnKbMI-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-24" value="&lt;div style=&quot;&quot;&gt;&lt;div&gt;+Employee(employeeId, name,jobTitle,&lt;/div&gt;&lt;div&gt;phoneNumber)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getEmployeeId()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getName()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setName()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getJobTitle()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setJobTitle()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-793" y="69" width="140" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-25" value="Rescue" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-66" y="-68" width="140" height="131" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-26" value="+rescueId&lt;div&gt;l+ocation&lt;/div&gt;&lt;div&gt;+date&lt;/div&gt;&lt;div&gt;+desCatName&lt;/div&gt;&lt;div&gt;+descriptionOfCat&lt;/div&gt;&lt;div&gt;+descriptionOfEvent&lt;/div&gt;&lt;div&gt;+status&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="NuwVipmZnlm5jZXnKbMI-25">
+          <mxGeometry y="30" width="140" height="101" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-27" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="NuwVipmZnlm5jZXnKbMI-25" source="NuwVipmZnlm5jZXnKbMI-26" target="NuwVipmZnlm5jZXnKbMI-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NuwVipmZnlm5jZXnKbMI-28" value="&lt;div style=&quot;&quot;&gt;+Rescue(rescueId, location, date, desCatName, descriptionOfCat, descriptionOfEvent, status)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getRescueId()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getLocation()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setLocation()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+getDate()&lt;/div&gt;&lt;div style=&quot;&quot;&gt;+setDate()&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-66" y="63" width="140" height="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

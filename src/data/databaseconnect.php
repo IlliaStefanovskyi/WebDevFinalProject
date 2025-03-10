@@ -2,7 +2,7 @@
     $db_server = "localhost";
     $db_user = "root";
     $db_pass = "";
-    $db_name = "catshelter";
+    $db_name = "webdevfinalproject";
     $conn = "";
 
     $conn = mysqli_connect($db_server,
