@@ -5,7 +5,7 @@
         require 'ComponentsCode/petCard.php';
         require 'data/values.php';
         for($i = 0; $i < count($catDesc); $i++){
-            addCard("images/img". ($i + 1). ".jpg",$catDesc[$i],"Male | 1", "Notes");
+            addCard("images/img". ($i + 1). ".jpg",$catDesc[$i],"Male | 1");
         }
         ?>
     </div>

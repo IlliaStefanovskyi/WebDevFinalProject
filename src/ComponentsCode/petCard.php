@@ -1,5 +1,5 @@
 <?php 
-function addCard($imageLoc, $petName, $petData, $petNotes){
+function addCard($imageLoc, $petName, $petData){
     echo '
     <a href = "description.php" class = petCard>
     <div class = petCardImageContainer>
@@ -8,7 +8,6 @@ function addCard($imageLoc, $petName, $petData, $petNotes){
     <div class = petCardDescription>
         <p class = "petNameOnCard">', $petName, '</p>
         <p class = "petDataOnCard">', $petData, '</p>
-        <p class = "notesOnCard">', $petNotes, '</p>
     </div>
     </a>
     ';

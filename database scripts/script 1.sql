@@ -29,6 +29,8 @@ primary key(catId)
 
 create table managers(
 managerId INT auto_increment,
+email VARCHAR(45) NOT NULL,
+password VARCHAR(45) NOT NULL,
 name VARCHAR(45) NOT NULL,
 phoneNumber VARCHAR(10) NOT NULL,
 primary key(managerId) 
@@ -36,6 +38,8 @@ primary key(managerId)
 
 create table employees(
 employeeId INT auto_increment,
+email VARCHAR(45) NOT NULL,
+password VARCHAR(45) NOT NULL,
 name VARCHAR(45) NOT NULL,
 jobTitle VARCHAR(45) NOT NULL,
 phoneNumber VARCHAR(10) NOT NULL,
