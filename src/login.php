@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my account</title>
-    <link rel="stylesheet" href="css/style.css">
-<!--Fonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Delicious+Handrawn&display=swap" rel="stylesheet">
-</head>
+<?php
+    if (isset($_POST['submit'])) {
+        try {
+            require 'data/connection.php';
+            require 'data/safety.php';
+            $new_user = array(
+                "email" => makeSafe($_POST['email']),
+                "password" => makeSafe($_POST['password']),
+                "name" => makeSafe($_POST['name']),
+                "phoneNum" => makeSafe($_POST['phoneNum']),
+                "address" => makeSafe($_POST['address'])
+            );
+            $sql = sprintf("INSERT INTO %s (%s) values (%s)", "clients", 
+            implode(", ",array_keys($new_user)), ":" . 
+            implode(", :", array_keys($new_user)));
+
+            $statement = $connection->prepare($sql);
+            $statement->execute($new_user);
+        } catch (PDOException $error) {
+            echo $sql . "<br>" . $error->getMessage();
+        }
+    }
+    if (isset($_POST['submit']) && $statement) {
+        echo $new_user['name'] . ' successfully added';
+    }
+?>
 <body>
     <?php require 'ComponentsCode/header.php'; ?>
-    <div class = "loginContainerOuter">
-        <div class = "loginContainer">
+    <div class="loginContainerOuter">
+        <div class="loginContainer">
             
-            <form method = "post" class = "left">
+            <!--<form method = "post" class = "left">
                 <h3>Log in</h3>
                 <p>Email</p>
                 <input type = "email" name = "loginEmail" required>
@@ -24,7 +38,7 @@
                 <div>
                     <button type = "submit">Enter</button>
                 </div>
-            </form>
+            </form>-->
         
             <form method = "post" class = "right">
                 <h3>Sign up</h3>
@@ -39,7 +53,7 @@
                 <p>Password</p>
                 <input type = "password" name = "password" required>
                 <p>Confirm password</p>
-                <input type = "password" required>
+                <input type = "password" name = "passwordConf" required>
                 <div>
                     <button type = "submit">Create account</button>
                 </div>
@@ -49,4 +63,3 @@
     </div>
     <?php require 'ComponentsCode/footer.php'; ?>
 </body>
-</html>

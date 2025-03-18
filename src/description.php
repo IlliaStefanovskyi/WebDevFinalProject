@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="css/style.css">
-<!--Fonts-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Delicious+Handrawn&display=swap" rel="stylesheet">
-</head>
 <body>
     <?php require 'ComponentsCode/header.php'; ?>
         <h1>Max</h1>
@@ -58,4 +46,3 @@
         <p>Milo is a charming and affectionate Persian with the fluffiest coat! He enjoys laying on soft cushions, watching birds from the window, and getting pampered iwth gentle brushing sessions. He is bery relaxed and prefers a quiet home where he can get all the love and attention he craves. Milo is a perfect cat for someone who enjoys calm and peaceful lifestyle, where lazy afternoons and soft, warm cuddles make everyday a little more special!</p>
     <?php require 'ComponentsCode/footer.php'; ?>
 </body>
-</html>
