@@ -7,7 +7,7 @@
                 "email" => makeSafe($_POST['email']),
                 "password" => makeSafe($_POST['password']),
                 "name" => makeSafe($_POST['name']),
-                "phoneNum" => makeSafe($_POST['phoneNum']),
+                "phonenum" => makeSafe($_POST['phonenum']),
                 "address" => makeSafe($_POST['address'])
             );
             $sql = sprintf("INSERT INTO %s (%s) values (%s)", "clients", 
@@ -47,7 +47,7 @@
                 <p>Aircode</p>
                 <input type = "text" name = "address" required>
                 <p>Phone number</p>
-                <input type = "text" name = "phoneNum" required>
+                <input type = "text" name = "phonenum" required>
                 <p>Email</p>
                 <input type = "email" name = "email" required>
                 <p>Password</p>
@@ -55,7 +55,7 @@
                 <p>Confirm password</p>
                 <input type = "password" name = "passwordConf" required>
                 <div>
-                    <button type = "submit">Create account</button>
+                    <button name = "submit">Create account</button>
                 </div>
             </form>
             
