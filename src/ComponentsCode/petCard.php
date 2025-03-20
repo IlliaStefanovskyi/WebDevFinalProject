@@ -1,7 +1,9 @@
 <?php 
-function addCard($imageLoc, $petName, $petData){
+function addCard($imageLoc, $petName, $petData,$catId){
+    #catIdWill be used to redirect to correct cat description page
+    require_once 'data/safety.php';
     echo '
-    <a href = "description.php" class = petCard>
+    <a href="description.php?id=',  makeSafe($catId), '" class = petCard>
     <div class = petCardImageContainer>
         <img class = "petCardImage" src = "', $imageLoc, '">
     </div>

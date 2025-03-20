@@ -6,7 +6,7 @@
     USE webdevfinalproject;
     SELECT * FROM users;
     ";
-    require 'data/connection.php';
+    require_once 'data/connection.php';
     /*$statement = $connection->prepare($sqlQuery);
     $statement -> execute();
     $result = $statement -> fetchAll();

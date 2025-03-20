@@ -1,8 +1,8 @@
 <?php
     if (isset($_POST['submit'])) {
         try {
-            require 'data/connection.php';
-            require 'data/safety.php';
+            require_once 'data/connection.php';
+            require_once 'data/safety.php';
             $new_user = array(
                 "email" => makeSafe($_POST['email']),
                 "password" => makeSafe($_POST['password']),

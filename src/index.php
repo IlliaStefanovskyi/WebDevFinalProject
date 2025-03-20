@@ -1,17 +1,29 @@
 <body>
     <?php
     $sqlQuery ="SELECT * FROM cats;";
-    require 'data/connection.php';
+    require_once 'data/connection.php';
     $result = $connection->query($sqlQuery);
-    $rows = $result->fetchAll();
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
     require 'ComponentsCode/header.php'; 
     ?>
     <div id="petLayoutContainer">
-        <?php #iterates trough rows received from database
-        require 'ComponentsCode/petCard.php';
-        for ($i = 0; $i < count($rows); $i++) {
-            addCard($rows[$i]["image"], $rows[$i]["name"], "Male | 1");
+        <?php 
+        #creates an array of Cat instances
+        require_once 'classes/Cat.php';
+        $catInstanceArr = array();
+        foreach($rows as $row){
+            $catInstanceArr[] = new Cat(...array_values($row));
+        }
+        #iterates trough cat class instances
+        require_once 'ComponentsCode/petCard.php';
+        for ($i = 0; $i < count($catInstanceArr); $i++) {
+            addCard(
+            $catInstanceArr[$i]->image, 
+            $catInstanceArr[$i]->name, 
+            "{$catInstanceArr[$i]->gender} | {$catInstanceArr[$i]->age}",
+            $catInstanceArr[$i]->catId
+            );
         }
         ?>
     </div>
