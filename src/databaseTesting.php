@@ -11,7 +11,7 @@
     $statement -> execute();
     $result = $statement -> fetchAll();
     echo $result[0]["name"];*/
-
+/*
     $result = $connection->query('SELECT * FROM clients');
     $rows = $result->fetchAll();
     var_dump($rows[0]["name"]);

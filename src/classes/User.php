@@ -1,19 +1,13 @@
 <?php 
-class User {
-    public $userId;
+abstract class User {
+    #has no password parameter, since it's a security threat
     public $email;
-    public $password;
     public $name;
-    public $address;
-    public $phoneNUm;
-    function UserConstructor($userId, $email, $password, 
-    $name, $address, $phoneNum){
-        $this->userId = $userId;
+    public $phoneNum;
+    function __construct($email, $name, $phoneNum){
         $this->email = $email;
-        $this->password = $password;
         $this->name = $name;
-        $this->address = $address;
-        $this->phoneNUm = $phoneNum;
+        $this->phoneNum = $phoneNum;
     }
 }
 ?>
