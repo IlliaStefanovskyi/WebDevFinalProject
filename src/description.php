@@ -1,3 +1,4 @@
+<?php require 'ComponentsCode/header.php'; ?>
 <body>
     <?php 
     if (isset($_GET['id'])){
@@ -13,8 +14,6 @@
 
     require_once 'classes/Cat.php';#converts array to an object
     $cat = new Cat(...array_values($catArr[0]));
-
-    require 'ComponentsCode/header.php';
     ?>
     <div class=bigDescContainer>
         <div class="upperContainerForDesc">

@@ -1,5 +1,5 @@
+<?php require 'ComponentsCode/header.php'; ?>
 <body>
-    <?php require 'ComponentsCode/header.php'; ?>
     </div>
     <div class = "ourServicesContainer">
         <div class = "ourServices">

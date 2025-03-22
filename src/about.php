@@ -1,5 +1,5 @@
+<?php require 'ComponentsCode/header.php'; ?>
 <body>
-    <?php require 'ComponentsCode/header.php'; ?>
     <div class = "ourHistoryContainer">
         <div class = "ourHistory">
             <img src = "images/ourHistoryAboutImage.jpg" alt = "Image relevant to our history">

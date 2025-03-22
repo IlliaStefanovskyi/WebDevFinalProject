@@ -1,11 +1,10 @@
+<?php require 'ComponentsCode/header.php'; ?>
 <body>
     <?php
     $sqlQuery ="SELECT * FROM cats;";
     require_once 'data/connection.php';
     $result = $connection->query($sqlQuery);
-    $rows = $result->fetchAll(PDO::FETCH_ASSOC);
-
-    require 'ComponentsCode/header.php'; 
+    $rows = $result->fetchAll(PDO::FETCH_ASSOC); 
     ?>
     <div id="petLayoutContainer">
         <?php 
