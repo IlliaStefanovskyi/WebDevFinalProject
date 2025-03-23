@@ -1,29 +1,57 @@
 <?php require 'ComponentsCode/header.php'; ?>
+<?php 
+if(!isset($_SESSION["Active"])){
+    header("location:login.php");
+    exit;
+}
+if(isset($_POST['submit'])){
+    try {
+        require_once 'data/connection.php';
+        require_once 'data/safety.php';
+        //receives user id
+        $email = makeSafe($_SESSION['Username']);
+        $sqlQuery = "SELECT clientId FROM clients WHERE email = :email;";
+        $statement = $connection -> prepare($sqlQuery);
+        $statement -> bindValue(':email',$email);
+        $statement -> execute();
+        $userData = $statement->fetch(PDO::FETCH_ASSOC);
+
+        //TODO receive employee ID's and select a random one
+
+        $new_booking = array(
+            "catId" => makeSafe($_GET['id']),
+            "clientId" => makeSafe($userData['clientId']),
+            "employeeId" => makeSafe('1'),//edit here!!!
+            "time" => makeSafe($_POST['bookingDate'])
+        );
+        $sql = sprintf("INSERT INTO %s (%s) values (%s)", "bookings", 
+        implode(", ",array_keys($new_booking)), ":" . 
+        implode(", :", array_keys($new_booking)));
+
+        $statement = $connection->prepare($sql);
+        $statement->execute($new_booking);
+
+        echo"booking created!!!";
+
+        //Redirects to account page
+        header("location:account.php"); 
+        exit; 
+        
+    } catch (PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
+?>
 <body>
     </div>
     <div class = "ourServicesContainer">
         <div class = "ourServices">
             <div class = "left">
-                <form id="cat-form" action="#" method="POST">
-                    <label for="owner-name">Full Name:</label>
-                    <input type="text" id="owner-name" name="owner-name" required>
+                <form id="cat-form" action="#" method="post">
+                    <label for="donation-date">Select booking date and time:</label>
+                    <input type="datetime-local" id="donation-date" name="bookingDate" required>
 
-                    <label for="owner-age">Age:</label>
-                    <input type="text" id="owner-age" name="owner-age" required>
-
-                    <label for="cat-id">Please input the cat's reference ID:</label>
-                    <input type="text" id="cat-id" name="cat-id">
-
-                    <label for="cat-past">Reason for adopting?:</label>
-                    <textarea id="cat-past" name="cat-past" rows="3"></textarea>
-
-                    <label for="donation-date">Preferred Booking Date:</label>
-                    <input type="date" id="donation-date" name="donation-date" required>
-
-                    <label for="owner-contact">Contact Information:</label>
-                    <input type="text" id="owner-contact" name="owner-contact" required>
-
-                    <button type="submit">Submit Booking Form</button>
+                    <button type="submit" name = "submit">Submit Booking Form</button>
                 </form>
             </div>
         </div>

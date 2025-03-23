@@ -1,23 +1,27 @@
 <?php require 'ComponentsCode/header.php'; ?>
 <?php
-    /*if(isset($_GET['submitSignIn'])){
+    if(isset($_POST['submitSignIn'])){
         require_once 'data/connection.php';
         require_once 'data/safety.php';
-        $email = makeSafe($_GET['email']);
-        $password = makeSafe($_GET['password']);
+        $email = makeSafe($_POST['email']);
+        $password = makeSafe($_POST['password']);
         //will return only one id if input is valid
-        $sqlQuery = "SELECT clientId FROM clients WHERE email = ':email' && password = ':password';";
+        $sqlQuery = "SELECT clientId FROM clients WHERE email = :email AND password = :password;";
         $statement = $connection -> prepare($sqlQuery);
         $statement -> bindValue(':email',$email);
         $statement -> bindValue(':password',$password);
         $statement -> execute();
-        $idChecker = $statement->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($idChecker);
-        //if no matches found
-        if($idChecker[0]['clientId']->isset){
-
+        $idChecker = $statement->fetch(PDO::FETCH_ASSOC);
+        //if matches found
+        if($idChecker){
+            //store email as username to the session, since it's unique to each user
+            $_SESSION['Username'] = $_POST['email'];
+            //session for access to pages
+            $_SESSION['Active'] = true;
+        }else{
+            echo "Wrong email or password!";
         }
-    }*/
+    }
     if (isset($_POST['submitSignUp'])) {
         try {
             require_once 'data/connection.php';
@@ -46,24 +50,21 @@
         }
     }
     //redirects to account if already logged in
-    //try catch is for when Active key is yet undefined
-    try{
-    if ($_SESSION['Active']) {
+    if (isset($_SESSION['Active']) && $_SESSION['Active']) {
         header("location:account.php"); 
             exit; 
     }
-    }catch(Exception $e){}
 ?>
 <body>
     <div class="loginContainerOuter">
         <div class="loginContainer">
             
-            <form method = "get" class = "left">
+            <form method = "post" class = "left">
                 <h3>Log in</h3>
                 <p>Email</p>
-                <input type = "email" name = "loginEmail" required>
+                <input type = "email" name = "email" required>
                 <p>Password</p>
-                <input type = "password" name = "loginPassword" required>
+                <input type = "password" name = "password" required>
                 <div>
                     <button name = "submitSignIn" type = "submit">Enter</button>
                 </div> 

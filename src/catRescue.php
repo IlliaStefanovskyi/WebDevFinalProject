@@ -1,4 +1,9 @@
-<?php require 'ComponentsCode/header.php'; ?>
+<?php require 'ComponentsCode/header.php'; 
+if(!isset($_SESSION["Active"])){
+    header("location:login.php");
+    exit;
+}
+?>
 <body>
     </div>
     <div class = "ourServicesContainer">
