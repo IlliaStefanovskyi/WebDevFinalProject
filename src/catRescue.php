@@ -3,32 +3,69 @@ if(!isset($_SESSION["Active"])){
     header("location:login.php");
     exit;
 }
+
+if(isset($_POST["submitDonation"])){
+    try {
+        require_once 'data/connection.php';
+        require_once 'data/safety.php';
+
+        //receives user id
+        $email = makeSafe($_SESSION['Username']);
+        $sqlQuery = "SELECT clientId FROM clients WHERE email = :email;";
+        $statement = $connection -> prepare($sqlQuery);
+        $statement -> bindValue(':email',$email);
+        $statement -> execute();
+        $userData = $statement->fetch(PDO::FETCH_ASSOC);
+
+        //sends form
+        $new_rescue = array(
+            "clientId" => makeSafe($userData['clientId']),
+            "location" => makeSafe($_POST['rescLocation']),
+            "desCatName" => makeSafe($_POST['desName']),
+            "descriptionOfCat" => makeSafe($_POST['catRescDesc']),
+            "descriptionOfEvent" => makeSafe($_POST['rescEventDesc']),
+            "status" => makeSafe("Pending")
+        );
+        $sql = sprintf(
+            "INSERT INTO rescues (%s, date) VALUES (%s, CURDATE())",
+            implode(", ", array_keys($new_rescue)), ":".
+                    implode(", :", array_keys($new_rescue))
+        );
+        $statement = $connection->prepare($sql);
+        $statement->execute($new_rescue);
+
+        //redirects to my account page
+        header("location:account.php"); 
+        exit; 
+
+    } catch (PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
 ?>
 <body>
     </div>
     <div class = "ourServicesContainer">
         <div class = "ourServices">
             <div class = "left">
-                <form id="cat-form" action="#" method="POST">
-                    <label for="cat-name">Pet Name:</label>
-                    <input type="text" id="cat-name" name="cat-name" required>
+                <form id="cat-form" method="post">
+                    <label for="rescLocation">Location:</label>
+                    <input type="text" id="rescLocation" name="rescLocation" required>
 
-                    <label for="cat-age">Pet Age:</label>
-                    <input type="text" id="cat-age" name="cat-age" required>
+                    <!--date is set by currdate() function -->
 
-                    <label for="cat-breed">Breed (if possible):</label>
-                    <input type="text" id="cat-breed" name="cat-breed">
+                    <label for="desName">Desired name:</label>
+                    <input type="text" id="desName" name="desName">
 
-                    <label for="cat-health">Health Conditions or Medical History:</label>
-                    <textarea id="cat-health" name="cat-health" rows="4"></textarea>
+                    <label for="catRescDesc">Description of cat:</label>
+                    <textarea id="catRescDesc" name="catRescDesc" rows="4"></textarea>
 
-                    <label for="owner-name">Your Full name:</label>
-                    <input type="text" id="owner-name" name="owner-name" required>
+                    <label for="rescEventDesc">Description of event:</label>
+                    <textarea id="rescEventDesc" name="rescEventDesc" rows="4"></textarea>
 
-                    <label for="owner-contact">Contact Information:</label>
-                    <input type="text" id="owner-contact" name="owner-contact" required>
+                    <!-- status by default is pending, until it's reviewed by an employee -->
 
-                    <button type="submit">Submit Donation Form</button>
+                    <button type="submit" name = "submitDonation">Submit Rescue Form</button>
                 </form>
             </div>
         </div>
