@@ -1,5 +1,5 @@
 <?php 
-class Rescues{
+class Rescue{
 public $rescueId;
 public $clientId;
 public $location;

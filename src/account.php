@@ -3,6 +3,7 @@
 require_once 'data/connection.php';
 require_once 'data/safety.php';
 
+//logging out
 if (isset($_POST["logout"])) {
     //overwrite the current session array with an empty array.
     $_SESSION = [];
@@ -24,6 +25,7 @@ if (isset($_POST["logout"])) {
     header("location:login.php");
     exit;
 }
+
 //deleting booking
 if(isset($_GET['id'])){
     $sqlQuery = "DELETE FROM bookings WHERE bookingId = :id;";
@@ -35,9 +37,20 @@ if(isset($_GET['id'])){
     header("location:account.php");
     exit;
 }
+//deleting rescue
+if(isset($_GET['rescId'])){
+    $sqlQuery = "DELETE FROM rescues WHERE rescueId = :rescId;";
+    $statement = $connection -> prepare($sqlQuery);
+    $statement -> bindValue(':rescId', makeSafe($_GET['rescId']));
+    $statement -> execute();
+
+    //redirects in order to remove rescId from URL
+    header("location:account.php");
+    exit;
+}
 
 //receiving bookings
-$sqlQuery = "SELECT * FROM bookings b INNER JOIN clients c ON b.clientId = c.clientId WHERE c.email = :email";
+$sqlQuery = "SELECT b.* FROM bookings b INNER JOIN clients c ON b.clientId = c.clientId WHERE c.email = :email";
 $statement = $connection->prepare($sqlQuery);
 $statement->bindValue(':email', $_SESSION['Username']);
 $statement->execute();
@@ -47,6 +60,19 @@ require_once("classes/Booking.php");
 $bookings = array();
 foreach ($bookingsData as $row) {
     $bookings[] = new Booking(...array_values($row));
+}
+
+//receiving rescues
+$sqlQuery = "SELECT r.* FROM rescues r INNER JOIN clients c ON r.clientId = c.clientId WHERE c.email = :email";
+$statement = $connection->prepare($sqlQuery);
+$statement->bindValue(':email',$_SESSION['Username']);
+$statement->execute();
+$rescuesData = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+require_once("classes/Rescue.php");
+$rescues = array();
+foreach($rescuesData as $row){
+    $rescues[] = new Rescue(...array_values($row));
 }
 ?>
 
@@ -59,7 +85,7 @@ foreach ($bookingsData as $row) {
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Booking ID</th>
                 <th>Cat Id</th>
                 <th>Client Id</th>
                 <th>Employee Id</th>
@@ -76,6 +102,37 @@ foreach ($bookingsData as $row) {
                     <td><?php echo $booking->employeeId ?></td>
                     <td><?php echo $booking->time ?></td>
                     <td><a href="account.php?id=<?php echo makeSafe($booking->bookingId); ?> " name = "cancellBooking" type = "submit"> Cancel </a></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <h1>My rescues</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rescue ID</th>
+                <th>Client ID</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Desired name</th>
+                <th>Cat description</th>
+                <th>Event description</th>
+                <th>Status</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($rescues as $rescue): ?>
+                <tr>
+                    <td><?php echo $rescue->rescueId ?></td>
+                    <td><?php echo $rescue->clientId ?></td>
+                    <td><?php echo $rescue->location ?></td>
+                    <td><?php echo $rescue->date ?></td>
+                    <td><?php echo $rescue->desCatName ?></td>
+                    <td><?php echo $rescue->descriptionOfCat ?></td>
+                    <td><?php echo $rescue->descriptionOfEvent ?></td>
+                    <td><?php echo $rescue->status ?></td>
+                    <td><a href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?> " name = "cancellRescue" type = "submit"> Delete </a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

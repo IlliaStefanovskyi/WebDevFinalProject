@@ -254,4 +254,9 @@ body{
     font-size: 1em;
 }
 
+.rescueDesc{
+    max-width: 350px;
+    padding:30px;
+}
+
 /* Cat form end here - Jayson*/

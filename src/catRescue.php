@@ -47,6 +47,15 @@ if(isset($_POST["submitDonation"])){
     </div>
     <div class = "ourServicesContainer">
         <div class = "ourServices">
+            <div class = "rescueDesc">
+                <h1>How does rescue work?</h1>
+                <p>Fill in the form and wait for the employee to review it, if we 
+                    are satisfied with the data, the status will change to reviewed 
+                    and you will be contacted via email or phone to progress with 
+                    donation. Images of cat are made and added by the employee.</p>
+                <p>You can view the rescues with status and other related data 
+                    <a href = "account.php">here</a>.</p>
+            </div>
             <div class = "left">
                 <form id="cat-form" method="post">
                     <label for="rescLocation">Location:</label>
