@@ -3,7 +3,10 @@ if(!isset($_SESSION["Active"])){
     header("location:login.php");
     exit;
 }
-
+if($_SESSION['Type'] != "client"){
+    header("location:blockAccess.php"); 
+            exit; 
+}
 if(isset($_POST["submitDonation"])){
     try {
         require_once 'data/connection.php';
