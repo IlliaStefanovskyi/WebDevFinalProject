@@ -1,31 +1,40 @@
 <?php require 'ComponentsCode/header.php'; ?>
 <?php
+    require_once 'data/connection.php';
+    require_once 'data/safety.php';
+
     if(isset($_POST['submitSignIn'])){
-        require_once 'data/connection.php';
-        require_once 'data/safety.php';
         $email = makeSafe($_POST['email']);
         $password = makeSafe($_POST['password']);
-        //will return only one id if input is valid
+
+        //client
         $sqlQuery = "SELECT clientId FROM clients WHERE email = :email AND password = :password;";
-        $statement = $connection -> prepare($sqlQuery);
-        $statement -> bindValue(':email',$email);
-        $statement -> bindValue(':password',$password);
-        $statement -> execute();
-        $idChecker = $statement->fetch(PDO::FETCH_ASSOC);
+        $idChecker = lookForUser($sqlQuery,$email,$password, $connection);
         //if matches found
         if($idChecker){
-            //store email as username to the session, since it's unique to each user
-            $_SESSION['Username'] = $_POST['email'];
-            //session for access to pages
-            $_SESSION['Active'] = true;
+            startSessionNow($email, "client");
+        }
+
+        //employee
+        $sqlQuery = "SELECT employeeId FROM employees WHERE email = :email AND password = :password;";
+        $idChecker = lookForUser($sqlQuery,$email,$password, $connection);
+        //if matches found
+        if($idChecker){
+            startSessionNow($email, "employee");
+        }
+
+        //manager
+        $sqlQuery = "SELECT managerId FROM managers WHERE email = :email AND password = :password;";
+        $idChecker = lookForUser($sqlQuery,$email,$password, $connection);
+        //if matches found
+        if($idChecker){
+            startSessionNow($email, "manager");
         }else{
-            echo "Wrong email or password!";
+            echo "Email or password is wrong!";
         }
     }
     if (isset($_POST['submitSignUp'])) {
         try {
-            require_once 'data/connection.php';
-            require_once 'data/safety.php';
             $new_user = array(
                 "email" => makeSafe($_POST['email']),
                 "password" => makeSafe($_POST['password']),
@@ -40,11 +49,7 @@
             $statement = $connection->prepare($sql);
             $statement->execute($new_user);
 
-            //store email as username to the session, since it's unique to each user
-            $_SESSION['Username'] = $_POST['email'];
-            //session for access to pages
-            $_SESSION['Active'] = true;
-
+            startSessionNow($_POST['email'], "client");
         } catch (PDOException $error) {
             echo $sql . "<br>" . $error->getMessage();
         }
@@ -53,6 +58,21 @@
     if (isset($_SESSION['Active']) && $_SESSION['Active']) {
         header("location:account.php"); 
             exit; 
+    }
+    function startSessionNow($email,$userType){
+            //store email as username to the session, since it's unique to each user
+            $_SESSION['Username'] = $email;
+            //session for access to pages
+            $_SESSION['Active'] = true;
+            //user type session
+            $_SESSION['Type'] = $userType;
+    }
+    function lookForUser($sqlQuery, $email, $password, $connection){
+        $statement = $connection -> prepare($sqlQuery);
+        $statement -> bindValue(':email',$email);
+        $statement -> bindValue(':password',$password);
+        $statement -> execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 ?>
 <body>

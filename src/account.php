@@ -77,6 +77,7 @@ foreach($rescuesData as $row){
 ?>
 
 <body>
+    <h1>Account type: <?php echo $_SESSION['Type'] ?></h1>
     <h1>Log out</h1>
     <form method="post">
         <button name="logout" type="logout">Logout</button>
@@ -87,21 +88,19 @@ foreach($rescuesData as $row){
             <tr>
                 <th>Booking ID</th>
                 <th>Cat Id</th>
-                <th>Client Id</th>
                 <th>Employee Id</th>
                 <th>Time</th>
-                <th>Cancel</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($bookings as $booking): ?>
                 <tr>
                     <td><?php echo $booking->bookingId ?></td>
-                    <td><?php echo $booking->catId ?></td>
-                    <td><?php echo $booking->clientId ?></td>
+                    <td><a><?php echo $booking->catId ?></a></td>
                     <td><?php echo $booking->employeeId ?></td>
                     <td><?php echo $booking->time ?></td>
-                    <td><a href="account.php?id=<?php echo makeSafe($booking->bookingId); ?> " name = "cancellBooking" type = "submit"> Cancel </a></td>
+                    <td><a href="description.php?id=<?php echo makeSafe($booking->catId)?>" class = "inTextLink"><button>See cat</button></a></td>
+                    <td><a class = "inTextLink" href="account.php?id=<?php echo makeSafe($booking->bookingId); ?> " name = "cancellBooking" type = "submit"> Cancel </a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -132,7 +131,7 @@ foreach($rescuesData as $row){
                     <td><?php echo $rescue->descriptionOfCat ?></td>
                     <td><?php echo $rescue->descriptionOfEvent ?></td>
                     <td><?php echo $rescue->status ?></td>
-                    <td><a href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?> " name = "cancellRescue" type = "submit"> Delete </a></td>
+                    <td><a class = "inTextLink" href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?> " name = "cancellRescue" type = "submit"> Delete </a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

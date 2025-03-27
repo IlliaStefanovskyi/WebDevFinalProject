@@ -74,11 +74,13 @@ FOREIGN KEY (clientId) REFERENCES clients(clientId)
 );
 
 insert into clients values(null,"client@gmail.com","qwerty","Bob","0874783321","3828 Piermont Dr, Albuquerque, NM");
-INSERT INTO cats values(null, "D:\A TUD university\3 Web Dev\WebDevFinalProject\src\images\img1.jpg", "Lala", 2, "Female", "Maine Coon", "Silver Tabby", 4.75, 
+INSERT INTO cats values(null, "images/img1.jpg", "Lala", 2, "Female", "Maine Coon", "Silver Tabby", 4.75, 
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec scelerisque velit, vel aliquet tortor. 
 Vestibulum et euismod ante, maximus tincidunt odio. Suspendisse sodales scelerisque lacinia. Praesent mi 
 libero, molestie sed orci nec, luctus auctor mi. Maecenas in nisi eget enim vulputate convallis id quis purus. 
 Nam tempus iaculis elementum.", "2025-02-10");
+INSERT INTO cats values(null, "images/img3.jpg", "Bob", 1, "Male", "English", "Black", 3.5, 
+"Distinct english gentleman", "2024-05-03");
 INSERT INTO managers values (null,"manager@gmail.com","qwerty","Luke Kscheshov", "0874300435");
 INSERT INTO employees VALUES (null,"employee@gmail.com","qwerty","John Dobs","Assistant","0874653528",1);
 insert into rescues values (null,1,"St. Josephs Street", "2025-02-03", "Tuko", "Rescued cat description from database received", "description of rescue event from database received","pending");

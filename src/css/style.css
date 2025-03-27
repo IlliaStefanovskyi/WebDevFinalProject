@@ -1,3 +1,14 @@
+.inTextLink{
+    color:rgb(250, 60, 27);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-decoration: none;
+}
+.inTextLink:hover{
+    font-weight: bolder;
+    color:rgb(9, 22, 10);
+}
+
 /*Pet card by Illia STARTS HERE*/
 .petCard{
     height: 235px;

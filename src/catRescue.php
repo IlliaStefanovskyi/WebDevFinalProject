@@ -54,7 +54,7 @@ if(isset($_POST["submitDonation"])){
                     and you will be contacted via email or phone to progress with 
                     donation. Images of cat are made and added by the employee.</p>
                 <p>You can view the rescues with status and other related data 
-                    <a href = "account.php">here</a>.</p>
+                    <a class = "inTextLink" href = "account.php">here</a>.</p>
             </div>
             <div class = "left">
                 <form id="cat-form" method="post">
