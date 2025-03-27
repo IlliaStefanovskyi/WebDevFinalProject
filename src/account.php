@@ -5,24 +5,16 @@ require_once 'data/safety.php';
 
 //logging out
 if (isset($_POST["logout"])) {
-    //overwrite the current session array with an empty array.
-    $_SESSION = [];
-    //overwrite the session cookie with empty data too.
-    if (ini_get('session.use_cookies')) {
-        $params = session_get_cookie_params();
-        setcookie(
-            session_name(),
-            '',
-            time() - 42000,
-            $params['path'],
-            $params['domain'],
-            $params['secure'],
-            $params['httponly']
-        );
-    }
-    session_destroy();
-    //redirect to login page
-    header("location:login.php");
+    require_once 'ComponentsCode/logout.php';
+}
+
+//redirects managers and employees
+if($_SESSION['Type'] == "manager"){
+    header("location:managerAccount.php");
+    exit;
+}
+else if($_SESSION['Type'] == "employee"){
+    header("location:employeeAccount.php");
     exit;
 }
 

@@ -20,12 +20,16 @@ if(isset($_POST['submit'])){
         $statement -> execute();
         $userData = $statement->fetch(PDO::FETCH_ASSOC);
 
-        //TODO receive employee ID's and select a random one
+        //receives employee ID's and select a random one
+        $sqlQuery = "SELECT employeeId FROM employees;";
+        $statement = $connection -> prepare($sqlQuery);
+        $statement -> execute();
+        $employeeIDs = $statement -> fetchAll(PDO::FETCH_COLUMN);
 
         $new_booking = array(
             "catId" => makeSafe($_GET['id']),
             "clientId" => makeSafe($userData['clientId']),
-            "employeeId" => makeSafe('1'),//edit here!!!
+            "employeeId" => makeSafe($employeeIDs[array_rand($employeeIDs)]),//random id
             "time" => makeSafe($_POST['bookingDate'])
         );
         $sql = sprintf("INSERT INTO %s (%s) values (%s)", "bookings", 
