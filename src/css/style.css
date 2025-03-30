@@ -271,3 +271,87 @@ body{
 }
 
 /* Cat form end here - Jayson*/
+
+
+/* Account style page - Stella */
+
+.accountPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.accountPageContainer h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: rgb(36, 36, 36);
+    text-align: center;
+}
+
+.accountPageContainer form {
+    margin-bottom: 40px;
+}
+
+.accountPageContainer table {
+    border-collapse: collapse;
+    width: 95%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.accountPageContainer table thead {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+}
+
+.accountPageContainer table th,
+.accountPageContainer table td {
+    padding: 12px 15px;
+    text-align: center;
+    font-family: 'Atkinson Hyperlegible Next', sans-serif;
+}
+
+.accountPageContainer table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.accountPageContainer table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.accountPageContainer button {
+    padding: 8px 15px;
+    border: none;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accountPageContainer button:hover {
+    background-color: rgb(41, 41, 41);
+}
+
+.buttonLink {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Atkinson Hyperlegible Next", sans-serif;
+}
+
+.buttonLink:hover {
+    background-color: rgb(41, 41, 41);
+}
+
+/* Account style page end here - Stella */

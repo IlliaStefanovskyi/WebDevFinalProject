@@ -69,64 +69,79 @@ foreach($rescuesData as $row){
 ?>
 
 <body>
-    <h1>Account type: <?php echo $_SESSION['Type'] ?></h1>
-    <h1>Log out</h1>
-    <form method="post">
-        <button name="logout" type="logout">Logout</button>
-    </form>
-    <h1>My bookings</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Booking ID</th>
-                <th>Cat Id</th>
-                <th>Employee Id</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($bookings as $booking): ?>
+    <div class="accountPageContainer">
+        <h1>Account type: <?php echo $_SESSION['Type'] ?></h1>
+        <h1>Log out</h1>
+        <form method="post">
+            <button name="logout" type="logout">Logout</button>
+        </form>
+        <h1>My bookings</h1>
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo $booking->bookingId ?></td>
-                    <td><a><?php echo $booking->catId ?></a></td>
-                    <td><?php echo $booking->employeeId ?></td>
-                    <td><?php echo $booking->time ?></td>
-                    <td><a href="description.php?id=<?php echo makeSafe($booking->catId)?>" class = "inTextLink"><button>See cat</button></a></td>
-                    <td><a class = "inTextLink" href="account.php?id=<?php echo makeSafe($booking->bookingId); ?> " name = "cancellBooking" type = "submit"> Cancel </a></td>
+                    <th>Booking ID</th>
+                    <th>Cat Id</th>
+                    <th>Employee Id</th>
+                    <th>Time</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <h1>My rescues</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Rescue ID</th>
-                <th>Client ID</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>Desired name</th>
-                <th>Cat description</th>
-                <th>Event description</th>
-                <th>Status</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($rescues as $rescue): ?>
-                <tr>
-                    <td><?php echo $rescue->rescueId ?></td>
-                    <td><?php echo $rescue->clientId ?></td>
-                    <td><?php echo $rescue->location ?></td>
-                    <td><?php echo $rescue->date ?></td>
-                    <td><?php echo $rescue->desCatName ?></td>
-                    <td><?php echo $rescue->descriptionOfCat ?></td>
-                    <td><?php echo $rescue->descriptionOfEvent ?></td>
-                    <td><?php echo $rescue->status ?></td>
-                    <td><a class = "inTextLink" href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?> " name = "cancellRescue" type = "submit"> Delete </a></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($bookings as $booking): ?>
+                    <tr>
+                        <td><?php echo $booking->bookingId ?></td>
+                        <td><a><?php echo $booking->catId ?></a></td>
+                        <td><?php echo $booking->employeeId ?></td>
+                        <td><?php echo $booking->time ?></td>
+                        <td><a href="description.php?id=<?php echo makeSafe($booking->catId)?>" class="buttonLink">See cat</a></td>
+                        <td><a href="account.php?id=<?php echo makeSafe($booking->bookingId); ?>" class="buttonLink">Cancel</a></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+        </table>
+        <h1>My rescues</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rescue ID</th>
+                        <th>Client ID</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Desired name</th>
+                        <th>Cat description</th>
+                        <th>Event description</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($rescues as $rescue): ?>
+                        <tr>
+                            <td><?php echo $rescue->rescueId ?></td>
+                            <td><?php echo $rescue->clientId ?></td>
+                            <td><?php echo $rescue->location ?></td>
+                            <td><?php echo $rescue->date ?></td>
+                            <td><?php echo $rescue->desCatName ?></td>
+                            <td><?php echo $rescue->descriptionOfCat ?></td>
+                            <td><?php echo $rescue->descriptionOfEvent ?></td>
+                            <td><?php echo $rescue->status ?></td>
+                            <td><a href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Delete</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+    <script>
+    document.querySelectorAll('.buttonLink').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.textContent.toLowerCase().includes("cancel") || this.textContent.toLowerCase().includes("delete")) {
+                if (!confirm("Are you sure you want to proceed?")) {
+                    e.preventDefault();
+                }
+            }
+        });
+    });
+    </script>
+
     <?php require 'ComponentsCode/footer.php'; ?>
 </body>

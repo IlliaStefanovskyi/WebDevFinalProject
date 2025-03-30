@@ -111,5 +111,36 @@
             
         </div>
     </div>
+    
+    <script>
+    const loginForm = document.querySelector('.left');
+    loginForm.addEventListener('submit', function(e) {
+        const email = loginForm.querySelector('input[name="email"]').value.trim();
+        const password = loginForm.querySelector('input[name="password"]').value.trim();
+        
+        if (!email || !password) {
+            alert("Email and password are required!");
+            e.preventDefault();
+        }
+    });
+    const signupForm = document.querySelector('.right');
+    signupForm.addEventListener('submit', function(e) {
+        const email = signupForm.querySelector('input[name="email"]').value.trim();
+        const password = signupForm.querySelector('input[name="password"]').value.trim();
+        const confirmPassword = signupForm.querySelector('input[name="passwordConf"]').value.trim();
+        const phone = signupForm.querySelector('input[name="phonenum"]').value.trim();
+        
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            e.preventDefault();
+        }
+        
+        if (!/^[0-9]{7,15}$/.test(phone)) {
+            alert("Phone number should be digits only (7–15 numbers)!");
+            e.preventDefault();
+        }
+        });
+    </script>
+
     <?php require 'ComponentsCode/footer.php'; ?>
 </body>
