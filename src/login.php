@@ -51,7 +51,10 @@
 
             startSessionNow($_POST['email'], "client");
         } catch (PDOException $error) {
-            echo $sql . "<br>" . $error->getMessage();
+            if($error->getCode() == 23000){
+                echo "This email already exists, please enter a different one or log in!";
+            }else
+                echo $sql . "<br>" . $error->getMessage();
         }
     }
     //redirects to account if already logged in
@@ -123,6 +126,9 @@
             e.preventDefault();
         }
     });
+
+//TODO check for password length, do it later to simplify development and testing
+
     const signupForm = document.querySelector('.right');
     signupForm.addEventListener('submit', function(e) {
         const email = signupForm.querySelector('input[name="email"]').value.trim();
@@ -135,8 +141,8 @@
             e.preventDefault();
         }
         
-        if (!/^[0-9]{7,15}$/.test(phone)) {
-            alert("Phone number should be digits only (7–15 numbers)!");
+        if (!/^[0-9]{7,10}$/.test(phone)) {
+            alert("Phone number should be digits only (7–10 numbers)!");
             e.preventDefault();
         }
         });

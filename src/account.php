@@ -83,6 +83,8 @@ foreach($rescuesData as $row){
                     <th>Cat Id</th>
                     <th>Employee Id</th>
                     <th>Time</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

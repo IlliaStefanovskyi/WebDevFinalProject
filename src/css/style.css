@@ -275,6 +275,10 @@ body{
 
 /* Account style page - Stella */
 
+.accountPageContainer td .buttonLink{
+    margin:5px;
+}
+
 .accountPageContainer {
     display: flex;
     flex-direction: column;
@@ -321,7 +325,7 @@ body{
     background-color: #f9f9f9;
 }
 
-.accountPageContainer table tr:hover {
+.accountPageContainer table tbody tr:hover {
     background-color: #f1f1f1;
 }
 
