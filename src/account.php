@@ -70,7 +70,6 @@ foreach($rescuesData as $row){
 
 <body>
     <div class="accountPageContainer">
-        <h1>Account type: <?php echo $_SESSION['Type'] ?></h1>
         <h1>Log out</h1>
         <form method="post">
             <button name="logout" type="logout">Logout</button>
@@ -112,7 +111,8 @@ foreach($rescuesData as $row){
                         <th>Cat description</th>
                         <th>Event description</th>
                         <th>Status</th>
-                        <th>Delete</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,6 +127,7 @@ foreach($rescuesData as $row){
                             <td><?php echo $rescue->descriptionOfEvent ?></td>
                             <td><?php echo $rescue->status ?></td>
                             <td><a href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Delete</a></td>
+                            <td><a href = "catRescue.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class = "buttonLink">Edit</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

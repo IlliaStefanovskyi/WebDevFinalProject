@@ -1,4 +1,5 @@
 <?php require 'ComponentsCode/header.php'; 
+$rescue = "";
 if(!isset($_SESSION["Active"])){
     header("location:login.php");
     exit;
@@ -7,7 +8,9 @@ if($_SESSION['Type'] != "client"){
     header("location:blockAccess.php"); 
             exit; 
 }
-if(isset($_POST["submitDonation"])){
+
+//if new rescue is created
+if(isset($_POST["submitDonation"]) && !isset($_GET["rescId"])){
     try {
         require_once 'data/connection.php';
         require_once 'data/safety.php';
@@ -45,6 +48,51 @@ if(isset($_POST["submitDonation"])){
         echo $sql . "<br>" . $error->getMessage();
     }
 }
+
+//if old rescue is being edited
+if(isset($_POST["submitDonation"]) && isset($_GET["rescId"])){
+
+    require_once 'data/connection.php';
+    require_once 'data/safety.php';
+
+    $sqlQuery = "UPDATE rescues 
+    SET location = :loc, 
+    desCatName = :dcn, 
+    descriptionOfCat = :doc, 
+    descriptionOfEvent = :doe 
+    WHERE  rescueId = :id";
+
+    $statement = $connection->prepare($sqlQuery);
+    $statement -> bindValue(':loc', makeSafe($_POST["rescLocation"]));
+    $statement -> bindValue(':dcn', makeSafe($_POST["desName"]));
+    $statement -> bindValue(':doc', makeSafe($_POST["catRescDesc"]));
+    $statement -> bindValue(':doe', makeSafe($_POST["rescEventDesc"]));
+    $statement -> bindValue(':id',makeSafe($_GET['rescId']));
+    $statement -> execute();
+
+    //redirects to my account page
+    header("location:account.php"); 
+    exit; 
+}
+
+//receives rescue data and puts it to an object
+if(isset($_GET["rescId"])){
+    require_once 'data/connection.php';
+    require_once 'data/safety.php';
+    $sqlQuery = "SELECT * FROM rescues WHERE rescueId = :id ";
+    $statement = $connection->prepare($sqlQuery);
+    $statement -> bindValue(":id", makeSafe($_GET["rescId"]));
+    $statement -> execute();
+    $values = $statement -> fetch(PDO::FETCH_ASSOC);
+
+    require_once("classes/Rescue.php");
+
+    $rescue = new Rescue(... array_values($values));
+}
+function setValue($value){
+    if(isset($_GET["rescId"]))
+        echo 'value="' . makeSafe($value) . '"';
+}
 ?>
 <body>
     </div>
@@ -62,18 +110,18 @@ if(isset($_POST["submitDonation"])){
             <div class = "left">
                 <form id="cat-form" method="post">
                     <label for="rescLocation">Location:</label>
-                    <input type="text" id="rescLocation" name="rescLocation" required>
+                    <input type="text" id="rescLocation" name="rescLocation" <?php if($rescue) setValue($rescue -> location) ?> required>
 
                     <!--date is set by currdate() function -->
 
                     <label for="desName">Desired name:</label>
-                    <input type="text" id="desName" name="desName">
+                    <input type="text" id="desName" name="desName" <?php if($rescue) setValue($rescue -> desCatName) ?>>
 
                     <label for="catRescDesc">Description of cat:</label>
-                    <textarea id="catRescDesc" name="catRescDesc" rows="4"></textarea>
+                    <textarea id="catRescDesc" name="catRescDesc" rows="4"><?php if($rescue) echo $rescue -> descriptionOfCat?></textarea>
 
                     <label for="rescEventDesc">Description of event:</label>
-                    <textarea id="rescEventDesc" name="rescEventDesc" rows="4"></textarea>
+                    <textarea id="rescEventDesc" name="rescEventDesc" rows="4"><?php if($rescue) echo $rescue -> descriptionOfEvent ?></textarea>
 
                     <!-- status by default is pending, until it's reviewed by an employee -->
 
