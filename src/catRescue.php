@@ -125,7 +125,7 @@ function setValue($value){
 
                     <!-- status by default is pending, until it's reviewed by an employee -->
 
-                    <button type="submit" name = "submitDonation">Submit Rescue Form</button>
+                    <button type="submit" name = "submitDonation" class = "buttonLink">Submit Rescue Form</button>
                 </form>
             </div>
         </div>

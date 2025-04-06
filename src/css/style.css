@@ -161,6 +161,32 @@ footer{
     flex-wrap: wrap;
     justify-content: center;
 }
+.filtersContainer{
+    position:fixed;
+    background:#2e291968;
+    width: 100%;
+    height:100%;
+    z-index: 998;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display:none;
+}
+.filtersForm{
+    padding:30px;
+    height:100px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:265px;
+    background-color: #d68b50;
+    border: 2px rgb(238, 229, 197) solid;
+    border-radius: 20px;
+}
+.addFiltersButton{
+    position: fixed;
+    margin:20px;
+}
 /*Index page ENDS HERE*/
 
 /*About page*/
@@ -235,17 +261,6 @@ body{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     margin-top: 40px;
     margin-bottom: 40px;
-}
-
-#cat-form button {
-    background-color: #000000;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#cat-form button:hover {
-    background-color: #000000;
 }
 
 #cat-form label {
@@ -345,7 +360,7 @@ body{
 
 .buttonLink {
     display: inline-block;
-    background-color: black;
+    background-color: rgb(30, 28, 28);
     color: white;
     padding: 8px 15px;
     border-radius: 5px;
@@ -355,7 +370,8 @@ body{
 }
 
 .buttonLink:hover {
-    background-color: rgb(41, 41, 41);
+    background-color: rgb(79, 56, 56);
+    color:#ff7912;
 }
 
 /* Account style page end here - Stella */

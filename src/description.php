@@ -27,7 +27,7 @@
                 <p>Color: <?php echo $cat->color; ?></p>
                 <p>weight: <?php echo $cat->weight; ?></p>
                 <a href="booking.php?id=<?php echo makeSafe($cat->catId); ?>">
-                    <button>Book an appointment</button>
+                    <button class = "buttonLink">Book an appointment</button> 
                 </a>
             </div>
         </div>

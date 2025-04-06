@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
                     <label for="donation-date">Select booking date and time:</label>
                     <input type="datetime-local" id="donation-date" name="bookingDate" required>
 
-                    <button type="submit" name = "submit">Submit Booking Form</button>
+                    <button type="submit" name = "submit" class = "buttonLink">Submit Booking Form</button>
                 </form>
             </div>
         </div>
