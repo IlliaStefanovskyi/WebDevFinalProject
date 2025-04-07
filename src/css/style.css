@@ -19,10 +19,12 @@
     flex-direction: column;
     margin: 5px;
     text-decoration: none;
+    transition: all 0.1s ease;
 }
 .petCard:hover{
-    margin: 4px;
+    margin: 2px;
     padding: 1px;
+    border:2px rgb(246, 128, 17) solid;
 }
 .petCardImageContainer{
     height: 160px;
