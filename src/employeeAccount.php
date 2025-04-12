@@ -7,7 +7,6 @@ if (isset($_POST["logout"])) {
 ?>
 
 <?php
-<h1>Employee</h1>
 //Essentials
 require_once 'data/connection.php';
 require_once 'data/safety.php';

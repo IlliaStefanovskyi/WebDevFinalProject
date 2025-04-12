@@ -1,4 +1,5 @@
 <?php
+require_once "User.php";
 final class Employee extends User{
     public $employeeId;
     public $jobTitle;

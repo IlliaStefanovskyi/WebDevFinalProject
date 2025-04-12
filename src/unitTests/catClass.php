@@ -2,6 +2,8 @@
     <?php
     require '../ComponentsCode/header.php';
     require_once '../classes/Cat.php';
+
+    //creating cat instance
     $cat = new Cat(
         1,
         "../images/img1.jpg",
@@ -17,12 +19,12 @@
     Nam tempus iaculis elementum.",
         "2025-02-10"
     );
+    //editing cat
     $cat->name = "Tara";
     ?>
 
-    <div class="catImageContainer">
-        <img src="<?php echo $cat->image; ?>" alt="cat image">
-    </div>
+    <img src="<?php echo $cat->image; ?>" alt="cat image">
+
     <div class="catDetailsContainer">
         <h1><?php echo $cat->name; ?>, <?php echo $cat->age; ?></h1>
         <p>Gender: <?php echo $cat->gender; ?></p>

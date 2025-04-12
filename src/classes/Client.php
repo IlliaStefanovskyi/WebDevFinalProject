@@ -1,4 +1,5 @@
 <?php 
+require_once "User.php";
 final class Client extends User{
     public $clientId;
     public $address;

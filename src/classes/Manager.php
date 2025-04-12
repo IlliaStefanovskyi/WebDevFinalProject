@@ -1,4 +1,5 @@
 <?php 
+require_once "User.php";
 final class Manager extends User{
     public $managerId;
     function __construct($managerId, $name, $phoneNum, $email){
