@@ -1,18 +1,16 @@
 <?php 
-require '../ComponentsCode/header.php';
-require_once '../classes/Manager.php';
+require_once '../unitTests/ManagerTest.php';
 require_once '../classes/Employee.php';
-//creating a manager(inheritance)
-$manager = new Manager(1,"John","0877837843","manager@gmail.com");
-//editing manager
-$manager -> setName("John1");
-$manager -> managerId = 2;
 
-//creating an employee(aggregation + inheritance)
+//creating an employee(partial aggregation + inheritance)
 $employee = new Employee(0,"Duglas","GEO","9993337778",$manager,"employee@gmail.com");
+
 //editing employee
+$employee -> employeeId = 1;
+$employee -> setName("Duglas1");
+$employee -> jobTitle = "GEO1";
+$employee -> setPhoneNum("1111111111");
 $employee -> setEmail("employee1@gmail.com");
-$employee -> setName("Duglas 1");
 
 //retreives manager from an employee
 $managerFromEmployee = $employee -> getManager();

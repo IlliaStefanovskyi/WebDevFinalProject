@@ -1,6 +1,5 @@
 <body>
     <?php
-    require '../ComponentsCode/header.php';
     require_once '../classes/Cat.php';
 
     //creating cat instance
@@ -8,7 +7,7 @@
         1,
         "../images/img1.jpg",
         "Lala",
-        2,
+        1,
         "Female",
         "Maine Coon",
         "Silver Tabby",
@@ -20,17 +19,25 @@
         "2025-02-10"
     );
     //editing cat
-    $cat->name = "Tara";
+    $cat -> catId = 2;
+    $cat -> image = "../images/img2.jpg";
+    $cat->name = "Tara2";
+    $cat -> age = 2;
+    $cat -> gender = "Male";
+    $cat -> breed = "Whatever";
+    $cat -> color = "black";
+    $cat -> weight = 5;
+    $cat -> description = "Cat description updated corectlly";
     ?>
-
+    <!-- values retreival -->
+    <h1>Cat data</h1>
     <img src="<?php echo $cat->image; ?>" alt="cat image">
-
-    <div class="catDetailsContainer">
-        <h1><?php echo $cat->name; ?>, <?php echo $cat->age; ?></h1>
-        <p>Gender: <?php echo $cat->gender; ?></p>
-        <p>Breed: <?php echo $cat->breed; ?></p>
-        <p>Color: <?php echo $cat->color; ?></p>
-        <p>weight: <?php echo $cat->weight; ?></p>
-        <p><?php echo $cat->description; ?> </p>
-    </div>
+    <p>id: <?php echo $cat->catId; ?></p>
+    <p>Name: <?php echo $cat->name; ?></p>
+    <p>Age: <?php echo $cat->age; ?></p>
+    <p>Gender: <?php echo $cat->gender; ?></p>
+    <p>Breed: <?php echo $cat->breed; ?></p>
+    <p>Color: <?php echo $cat->color; ?></p>
+    <p>weight: <?php echo $cat->weight; ?></p>
+    <p>description: <?php echo $cat->description; ?> </p>
 </body>
