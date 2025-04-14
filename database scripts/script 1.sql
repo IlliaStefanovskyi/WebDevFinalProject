@@ -1,4 +1,4 @@
-drop database webDevFinalProject;
+drop database if exists webDevFinalProject;
 
 create database webDevFinalProject;
 
@@ -79,18 +79,17 @@ INSERT INTO cats values(null, "images/img1.jpg", "Lala", 2, "Female", "Maine Coo
 Vestibulum et euismod ante, maximus tincidunt odio. Suspendisse sodales scelerisque lacinia. Praesent mi 
 libero, molestie sed orci nec, luctus auctor mi. Maecenas in nisi eget enim vulputate convallis id quis purus. 
 Nam tempus iaculis elementum.", "2025-02-10");
-INSERT INTO cats values(null, "images/img3.jpg", "Bob", 1, "Male", "English", "Black", 3.5, 
-"Distinct english gentleman", "2024-05-03");
 INSERT INTO managers values (null,"manager@gmail.com","qwerty","Luke Kscheshov", "0874300435");
 INSERT INTO employees VALUES (null,"employee@gmail.com","qwerty","John Dobs","Assistant","0874653528",1);
-INSERT INTO employees VALUES (null,"employee1@gmail.com","qwerty","Lincoln Johnston","Assistant","0383728332",1);
 insert into rescues values (null,1,"St. Josephs Street", "2025-02-03", "Tuko", "Rescued cat description from database received", "description of rescue event from database received","pending");
 INSERT INTO bookings VALUES (null,1,1,1,'2025-02-15 17:30:00');
 
 /*
+
 CREATE USER 'illia'@'localhost' IDENTIFIED BY 'toforget';
 
 GRANT ALL PRIVILEGES ON webdevfinalproject.* TO 'illia'@'localhost';
 
 FLUSH privileges;
-*/
+
+/*

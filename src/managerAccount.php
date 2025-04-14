@@ -46,6 +46,40 @@ $rescues = array();
 foreach ($rescuesData as $row) {
     $rescues[] = new Rescue(...array_values($row));
 }
+
+//Add Employee
+if (isset($_POST['addEmployee'])) {
+    $sql = "INSERT INTO employees (email, password, name, jobTitle, phoneNumber, managerId)
+            VALUES (:email, :password, :name, :jobTitle, :phoneNumber, :managerId)";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([
+        'email' => makeSafe($_POST['email']),
+        'password' => makeSafe($_POST['password']),
+        'name' => makeSafe($_POST['name']),
+        'jobTitle' => makeSafe($_POST['jobTitle']),
+        'phoneNumber' => makeSafe($_POST['phoneNumber']),
+        'managerId' => $_SESSION['Id']
+    ]);
+    header("location:managerAccount.php");
+    exit;
+}
+
+//Remove Employee
+if (isset($_GET['removeEmployee'])) {
+    $sql = "DELETE FROM employees WHERE employeeId = :id";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute([
+        'id' => makeSafe($_GET['removeEmployee'])
+    ]);
+    header("location:managerAccount.php");
+    exit;
+}
+
+//Get employee list
+$sql = "SELECT * FROM employees";
+$stmt = $connection->prepare($sql);
+$stmt->execute();
+$employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h1>Manager</h1>
@@ -90,6 +124,49 @@ foreach ($rescuesData as $row) {
         </tbody>
     </table>
 </div>
+
+<div class="accountPageContainer">
+    <h1>Manage Employees</h1>
+
+    <form method="post">
+        <h3>Add New Employee</h3>
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="password" placeholder="Password" required>
+        <input type="text" name="jobTitle" placeholder="Job Title" required>
+        <input type="text" name="phoneNumber" placeholder="Phone Number" required>
+        <button type="submit" name="addEmployee">Add Employee</button>
+    </form>
+
+    <h3>Current Employees</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Job Title</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($employees as $emp): ?>
+                <tr>
+                    <td><?php echo $emp['employeeId']; ?></td>
+                    <td><?php echo $emp['name']; ?></td>
+                    <td><?php echo $emp['email']; ?></td>
+                    <td><?php echo $emp['jobTitle']; ?></td>
+                    <td><?php echo $emp['phoneNumber']; ?></td>
+                    <td>
+                        <a href="managerAccount.php?removeEmployee=<?php echo $emp['employeeId']; ?>" class="buttonLink" onclick="return confirm('Remove this employee?');">Remove</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
 
 <script>
     document.querySelectorAll('.buttonLink').forEach(link => {
