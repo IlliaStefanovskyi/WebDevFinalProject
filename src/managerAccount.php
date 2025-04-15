@@ -47,8 +47,15 @@ foreach ($rescuesData as $row) {
     $rescues[] = new Rescue(...array_values($row));
 }
 
-//Add Employee
+//Add Employee 
 if (isset($_POST['addEmployee'])) {
+    //receiving manager id to add it to employee
+    $sql = "SELECT managerId FROM managers WHERE email = :email";
+    $statement = $connection -> prepare($sql);
+    $statement -> bindValue(":email", $_SESSION['Username']);
+    $statement -> execute();
+    $managerId = $statement->fetch(PDO::FETCH_ASSOC);
+    //creating new employee
     $sql = "INSERT INTO employees (email, password, name, jobTitle, phoneNumber, managerId)
             VALUES (:email, :password, :name, :jobTitle, :phoneNumber, :managerId)";
     $stmt = $connection->prepare($sql);
@@ -58,7 +65,7 @@ if (isset($_POST['addEmployee'])) {
         'name' => makeSafe($_POST['name']),
         'jobTitle' => makeSafe($_POST['jobTitle']),
         'phoneNumber' => makeSafe($_POST['phoneNumber']),
-        'managerId' => $_SESSION['Id']
+        'managerId' => $managerId["managerId"]
     ]);
     header("location:managerAccount.php");
     exit;
@@ -66,13 +73,17 @@ if (isset($_POST['addEmployee'])) {
 
 //Remove Employee
 if (isset($_GET['removeEmployee'])) {
-    $sql = "DELETE FROM employees WHERE employeeId = :id";
-    $stmt = $connection->prepare($sql);
-    $stmt->execute([
-        'id' => makeSafe($_GET['removeEmployee'])
-    ]);
-    header("location:managerAccount.php");
-    exit;
+    try{
+        $sql = "DELETE FROM employees WHERE employeeId = :id";
+        $stmt = $connection->prepare($sql);
+        $stmt->execute([
+            'id' => makeSafe($_GET['removeEmployee'])
+        ]);
+        header("location:managerAccount.php");
+        exit;
+    }catch(PDOException){
+        echo "<p class = 'eroorMessage'>Employee with id ", $_GET['removeEmployee'], " can't be deleted, since he/she still has appointments.</p>";
+    }
 }
 
 //Get employee list
@@ -178,6 +189,6 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
         }
     });
-</script>
+</scrip>
 
 <?php require 'ComponentsCode/footer.php'; ?>
