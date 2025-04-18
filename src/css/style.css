@@ -93,6 +93,17 @@ header{
 body{
     padding:0px;
     margin:0px;
+    font-family: "Atkinson Hyperlegible Next", serif;
+    height:100%;
+}
+html{
+    height:100%;
+}
+.footerAway{
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .mainNavigation{
     display:flex;
@@ -210,9 +221,6 @@ footer{
     align-items: center;
     margin-right: 50px;
     max-width: 1000px;
-}
-body{
-    font-family: "Atkinson Hyperlegible Next", serif;
 }
 .ourServicesHeader{
     display: flex;

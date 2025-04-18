@@ -72,7 +72,7 @@ foreach($rescuesData as $row){
     <div class="accountPageContainer">
         <h1>Log out</h1>
         <form method="post">
-            <button name="logout" type="logout">Logout</button>
+            <button class = "buttonLink" name="logout" type="logout">Logout</button>
         </form>
         <h1>My bookings</h1>
         <table>

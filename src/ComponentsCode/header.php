@@ -1,10 +1,18 @@
+<?php
+    if(isset($_POST["catSearch"])){
+        require_once 'data/safety.php';
+        $search = urldecode(makeSafe($_POST["catSearch"]));
+        header("location:index.php?search=". $search);
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?php session_start() ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my account</title>
+    <title>Vasylkit</title>
     <link rel="stylesheet" href="css/style.css">
 <!--Fonts-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +27,9 @@
             </a>
             <a class = "headerTextLinks" href = "about.php">About</a>
             <a class = "headerTextLinks" href = "catRescue.php">Cat rescue</a>
-            <input type = "text" placeholder = "search cat">
+            <form method = "post">
+                <input class = "searchCatBox" type = "text" name = "catSearch" placeholder = "search cat">
+            </form>
             <a class = "accountPageLinkHeader" href = "login.php">
                 <img class = "navImage" src = "images/accountPageIcon.png" alt = "Go to home page">
             </a>
