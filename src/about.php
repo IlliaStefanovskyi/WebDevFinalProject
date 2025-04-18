@@ -1,4 +1,5 @@
 <?php require 'ComponentsCode/header.php'; ?>
+<div class=footerAway>
 <body>
     <div class = "ourHistoryContainer">
         <div class = "ourHistory">
@@ -55,5 +56,6 @@
             </div>
         </div>
     </div>
-    <?php require 'ComponentsCode/footer.php'; ?>
 </body>
+<?php require 'ComponentsCode/footer.php'; ?>
+</div>

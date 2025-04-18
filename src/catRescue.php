@@ -95,7 +95,7 @@ function setValue($value){
 }
 ?>
 <body>
-    </div>
+<div class=footerAway>
     <div class = "ourServicesContainer">
         <div class = "ourServices">
             <div class = "rescueDesc">
@@ -130,5 +130,8 @@ function setValue($value){
             </div>
         </div>
     </div>
+    <div>
     <?php require 'ComponentsCode/footer.php'; ?>
+    </div>
+</div>
 </body>
