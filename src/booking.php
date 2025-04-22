@@ -62,7 +62,11 @@
                 <div class="left">
                     <form id="cat-form" action="#" method="post">
                         <label for="donation-date">Select booking date and time:</label>
-                        <input type="datetime-local" id="donation-date" name="bookingDate" required>
+                        <?php
+                        //receives current date
+                        $currDate = date('Y-m-d\TH:i');
+                        ?>
+                        <input type="datetime-local" id="donation-date" name="bookingDate" min = "<?php echo $currDate ?>" required>
 
                         <button type="submit" name="submit" class="buttonLink">Submit Booking Form</button>
                     </form>

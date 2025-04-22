@@ -97,6 +97,8 @@
                 <h3>Sign up</h3>
                 <p>Full name</p>
                 <input type = "text" name = "name" required>
+                <p>Age</p>
+                <input type = "number" min = 0 max = 100 name = "age" required>
                 <p>Aircode</p>
                 <input type = "text" name = "address" required>
                 <p>Phone number</p>
@@ -127,22 +129,33 @@
         }
     });
 
-//TODO check for password length, do it later to simplify development and testing
-
     const signupForm = document.querySelector('.right');
     signupForm.addEventListener('submit', function(e) {
         const email = signupForm.querySelector('input[name="email"]').value.trim();
         const password = signupForm.querySelector('input[name="password"]').value.trim();
         const confirmPassword = signupForm.querySelector('input[name="passwordConf"]').value.trim();
         const phone = signupForm.querySelector('input[name="phonenum"]').value.trim();
+        const age = signupForm.querySelector('input[name="age"]').value.trim();
         
-        if (password !== confirmPassword) {
+        if(password.length < 8 || 
+        !/[A-Za-z]/.test(password) || 
+        !/\d/.test(password)){//password has to be 8 digits in length and contain digits and characters
+            alert("Password has to be over 8 digits in length and contain characters and numbers!");
+            e.preventDefault();
+        }
+
+        if (password !== confirmPassword) {//passwords have to match
             alert("Passwords do not match!");
             e.preventDefault();
         }
         
-        if (!/^[0-9]{7,10}$/.test(phone)) {
+        if (!/^[0-9]{7,10}$/.test(phone)) {//checks phone number
             alert("Phone number should be digits only (7–10 numbers)!");
+            e.preventDefault();
+        }
+
+        if(age < 18){//checks for age
+            alert("You must be over 18 years of age!");
             e.preventDefault();
         }
         });

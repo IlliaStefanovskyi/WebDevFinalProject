@@ -11,6 +11,7 @@
             <?php
 
             //selects query to receive cats depending on search
+            //orders cats by inbound date (oldest to newest)
             if (isset($_GET["search"])) {
                 require_once "data/safety.php";
                 $sqlQuery = "
@@ -18,9 +19,10 @@
                     FROM cats 
                     WHERE name LIKE '%" . makeSafe($_GET["search"]) . "%'
                     OR description LIKE '%" . makeSafe($_GET["search"]) . "%'
-                    OR breed LIKE '%" . makeSafe($_GET["search"]) . "%'";
+                    OR breed LIKE '%" . makeSafe($_GET["search"]) . "%'
+                    order by inboundDate asc";
             } else {
-                $sqlQuery = "SELECT * FROM cats;";
+                $sqlQuery = "SELECT * FROM cats order by inboundDate asc;";
             }
             //fetches query
             require_once 'data/connection.php';
