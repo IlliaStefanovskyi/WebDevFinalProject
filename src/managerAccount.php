@@ -180,6 +180,7 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <script>
+    //For reject button
     document.querySelectorAll('.buttonLink').forEach(link => {
         if (link.textContent.toLowerCase().includes("reject")) {
             link.addEventListener('click', function (e) {
@@ -189,6 +190,42 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
             });
         }
     });
-</scrip>
+
+    //For removing employees
+    document.querySelectorAll('.buttonLink').forEach(link => {
+        if (link.textContent.toLowerCase().includes("remove")) {
+            link.addEventListener('click', function (e) {
+                if (!confirm("Are you sure you want to remove this employee?")) {
+                    e.preventDefault();
+                }
+            });
+        }
+    });
+
+    //For adding employees
+    const addEmployeeForm = document.querySelector('form[method="post"]');
+    if (addEmployeeForm) {
+        addEmployeeForm.addEventListener('submit', function (e) {
+            const email = addEmployeeForm.querySelector('input[name="email"]').value.trim();
+            const password = addEmployeeForm.querySelector('input[name="password"]').value.trim();
+            const phone = addEmployeeForm.querySelector('input[name="phoneNumber"]').value.trim();
+
+            if (password.length < 8 || !/[A-Za-z]/.test(password) || !/\d/.test(password)) {
+                alert("Password must be at least 8 characters long and include letters and numbers!");
+                e.preventDefault();
+            }
+
+            if (!/^[0-9]{7,10}$/.test(phone)) {
+                alert("Phone number must be 7 to 10 digits!");
+                e.preventDefault();
+            }
+
+            if (!email.includes("@")) {
+                alert("Enter a valid email!");
+                e.preventDefault();
+            }
+        });
+    }
+</script>
 
 <?php require 'ComponentsCode/footer.php'; ?>
