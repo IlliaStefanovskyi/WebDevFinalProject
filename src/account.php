@@ -1,3 +1,5 @@
+<div class = footerAway>
+<div>
 <?php require 'ComponentsCode/header.php'; ?>
 <?php
 require_once 'data/connection.php';
@@ -146,5 +148,7 @@ foreach($rescuesData as $row){
     });
     </script>
 
-    <?php require 'ComponentsCode/footer.php'; ?>
 </body>
+</div>
+</div>
+<?php require 'ComponentsCode/footer.php'; ?>

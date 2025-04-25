@@ -12,6 +12,13 @@
     color:red;
     font-size: 20px;
 }
+.accessDenied{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
 /*Pet card by Illia STARTS HERE*/
 .petCard{
