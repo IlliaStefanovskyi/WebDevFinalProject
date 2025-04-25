@@ -389,3 +389,65 @@ footer{
 }
 
 /* Account style page end here - Stella */
+
+/* Css for cat transfer */
+.addCatFormPage {
+    max-width: 600px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+.addCatFormPage h2 {
+    text-align: center;
+    color: #333;
+}
+
+.addCatFormPage form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.addCatFormPage form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.addCatFormPage form label span {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.addCatFormPage form input,
+.addCatFormPage form select,
+.addCatFormPage form textarea {
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+.addCatFormPage form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.addCatFormPage form button {
+    background-color: rgb(246, 128, 17);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.addCatFormPage form button:hover {
+    background-color: rgb(217, 110, 12);
+}
+/* End of cat transfer css - Jayson */

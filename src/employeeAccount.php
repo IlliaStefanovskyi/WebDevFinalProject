@@ -2,7 +2,6 @@
 <?php 
 if (isset($_POST["logout"])) {
     require_once 'ComponentsCode/logout.php';
-
 }
 ?>
 <?php
@@ -66,7 +65,7 @@ foreach ($rescuesData as $row) {
     <button name="logout" type="submit">Logout</button>
 </form>
 
-<!-- status filter -->
+<!-- Status filter -->
 <form method="get" style="margin: 20px 0;">
     <label for="status">Filter by Status:</label>
     <select name="status" id="status" onchange="this.form.submit()">
@@ -111,6 +110,11 @@ foreach ($rescuesData as $row) {
                         <td>
                             <a href="employeeAccount.php?approve=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Approve</a>
                             <a href="employeeAccount.php?reject=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Reject</a>
+                            
+                            <!-- Only for approved requests add the transfer action -->
+                            <?php if ($rescue->status === 'approved'): ?>
+                                <a href="addCat.php?rescueId=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Add to Cats</a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
