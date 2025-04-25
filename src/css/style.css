@@ -19,6 +19,12 @@
     transform: translate(-50%, -50%);
     text-align: center;
 }
+.descriptionOfCat{
+    height: 20px;
+    max-width: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+}
 
 /*Pet card by Illia STARTS HERE*/
 .petCard{
@@ -184,6 +190,8 @@ footer{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-left:15%;
+    margin-right: 15%;
 }
 .filtersContainer{
     position:fixed;

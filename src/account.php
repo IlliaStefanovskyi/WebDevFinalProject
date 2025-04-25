@@ -125,8 +125,8 @@ foreach($rescuesData as $row){
                             <td><?php echo $rescue->location ?></td>
                             <td><?php echo $rescue->date ?></td>
                             <td><?php echo $rescue->desCatName ?></td>
-                            <td><?php echo $rescue->descriptionOfCat ?></td>
-                            <td><?php echo $rescue->descriptionOfEvent ?></td>
+                            <td class = descriptionOfCat><?php echo $rescue->descriptionOfCat ?></td>
+                            <td class = descriptionOfCat><?php echo $rescue->descriptionOfEvent ?></td>
                             <td><?php echo $rescue->status ?></td>
                             <td><a href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Delete</a></td>
                             <td><a href = "catRescue.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class = "buttonLink">Edit</a></td>

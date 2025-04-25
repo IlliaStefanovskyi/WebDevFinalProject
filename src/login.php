@@ -131,10 +131,10 @@
 
     const signupForm = document.querySelector('.right');
     signupForm.addEventListener('submit', function(e) {
-        const email = signupForm.querySelector('input[name="email"]').value.trim();
-        const password = signupForm.querySelector('input[name="password"]').value.trim();
-        const confirmPassword = signupForm.querySelector('input[name="passwordConf"]').value.trim();
-        const phone = signupForm.querySelector('input[name="phonenum"]').value.trim();
+        const email = signupForm.querySelector('input[name="email"]').value.replace(/\s+/g, '');
+        const password = signupForm.querySelector('input[name="password"]').value.replace(/\s+/g, '');
+        const confirmPassword = signupForm.querySelector('input[name="passwordConf"]').value.replace(/\s+/g, '');
+        const phone = signupForm.querySelector('input[name="phonenum"]').value.replace(/\s+/g, '');
         const age = signupForm.querySelector('input[name="age"]').value.trim();
         
         if(password.length < 8 || 
