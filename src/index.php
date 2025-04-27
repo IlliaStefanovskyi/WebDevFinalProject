@@ -46,10 +46,11 @@
                     <button type="submit" name="submitParams" class="buttonLink">Submit filters</button>
                 </form>
                 <script>
-                    document.querySelector("form").addEventListener("submit", function (event) {
+                    //validates cat age input
+                    document.querySelector(".filtersForm").addEventListener("submit", function (event) {
                         var minAge = document.querySelector("#minAge").value.trim();
                         var maxAge = document.querySelector("#maxAge").value.trim();
-                        if (minAge > maxAge || minAge < 0 || maxAge > 30 || minAge == "" || minAge == "") {
+                        if (minAge > maxAge) {
                             event.preventDefault();
                             alert("Enter valid range between 0 and 30!");
                         }
