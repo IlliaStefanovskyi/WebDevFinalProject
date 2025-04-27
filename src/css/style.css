@@ -24,6 +24,21 @@
     max-width: 40px;
     overflow: hidden;
     white-space: nowrap;
+    z-index: 999;
+}
+.descriptionOfCat:hover{
+    height: auto;
+    max-width: none;
+    white-space: normal;
+    z-index: 1000;
+    background-color: #ccc;
+}
+.accountManagementContainer{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Pet card by Illia STARTS HERE*/

@@ -128,8 +128,10 @@ foreach($rescuesData as $row){
                             <td class = descriptionOfCat><?php echo $rescue->descriptionOfCat ?></td>
                             <td class = descriptionOfCat><?php echo $rescue->descriptionOfEvent ?></td>
                             <td><?php echo $rescue->status ?></td>
-                            <td><a href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Delete</a></td>
-                            <td><a href = "catRescue.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class = "buttonLink">Edit</a></td>
+                            <?php if($rescue->status != 'on display or adopted' && $rescue->status != 'approved'):?>
+                                <td><a href="account.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Delete</a></td>
+                                <td><a href = "catRescue.php?rescId=<?php echo makeSafe($rescue->rescueId); ?>" class = "buttonLink">Edit</a></td>
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

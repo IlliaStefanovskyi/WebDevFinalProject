@@ -43,6 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':description' => makeSafe($_POST['description']),
         ':inboundDate' => makeSafe($_POST['inboundDate']),
     ]);
+
+    //changes rescue status to "on display or adopted"
+    $sql = "UPDATE rescues SET status = 'on display or adopted' WHERE rescueId = :id";
+    $stmt = $connection->prepare($sql);
+    $stmt -> bindValue(":id", makeSafe($_GET['rescueId']));
+    $stmt->execute();
+
     header("location:employeeAccount.php");
     exit;
 }
@@ -76,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label>
             <span>Age:</span>
-            <input type="number" name="age" min="0" required>
+            <input type="number" name="age" min="0" max = 30 required>
         </label>
 
         <label>
@@ -100,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label>
             <span>Weight (kg):</span>
-            <input type="number" step="0.1" name="weight" required>
+            <input type="number" step="0.1" min="0" max="20" name="weight" required>
         </label>
 
         <button type="submit">Add Cat</button>

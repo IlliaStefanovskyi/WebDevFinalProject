@@ -28,11 +28,11 @@ $stmt = $connection->prepare($sql);
 $stmt->execute();
 $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<div class = accountManagementContainer>
+    <h1>Manage Cats</h1>
 
-<h1>Manage Cats</h1>
-
-<a href="employeeAccount.php" class="buttonLink">Back to Employee Account</a>
-
+    <a href="employeeAccount.php" class="buttonLink">Back to Employee Account</a>
+</div>
 <div class="accountPageContainer">
     <h2>All Cats</h2>
 
@@ -64,7 +64,7 @@ $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo htmlspecialchars($cat['breed']); ?></td>
                         <td><?php echo htmlspecialchars($cat['color']); ?></td>
                         <td><?php echo htmlspecialchars($cat['weight']); ?></td>
-                        <td><?php echo htmlspecialchars($cat['description']); ?></td>
+                        <td class = descriptionOfCat><?php echo htmlspecialchars($cat['description']); ?></td>
                         <td><?php echo htmlspecialchars($cat['inboundDate']); ?></td>
                         <td>
                             <a href="catManager.php?deleteCat=<?php echo makeSafe($cat['catId']); ?>" class="buttonLink deleteButton">Delete</a>

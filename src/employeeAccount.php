@@ -59,7 +59,13 @@ foreach ($rescuesData as $row) {
 }
 
 //load booking data
-$bookingStmt = $connection->prepare("SELECT * FROM bookings");
+$bookingStmt = $connection->prepare("
+SELECT b.* 
+FROM bookings b INNER JOIN employees e 
+ON b.employeeId = e.employeeId 
+WHERE e.email = :email AND time > current_date()"
+);
+$bookingStmt->bindValue(":email", $_SESSION["Username"]);
 $bookingStmt->execute();
 $bookingRows = $bookingStmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -78,18 +84,20 @@ foreach ($bookingRows as $row) {
 <h1>Employee Account</h1>
 
 <!-- Action Buttons -->
-<div style="margin-bottom: 20px;">
-    <a href="catManager.php" class="buttonLink">Manage Cats</a>
-</div>
+<div class = accountManagementContainer>
+    <div style="margin-bottom: 20px;">
+        <a href="catManager.php" class="buttonLink">Manage Cats</a>
+    </div>
 
 <!-- Logout form -->
 <form method="post">
     <button name="logout" type="submit">Logout</button>
 </form>
+</div>
 
 <!-- --------------- BOOKINGS ---------------- -->
 <div class="accountPageContainer">
-    <h2>Bookings</h2>
+    <h2>Bookings to accompany</h2>
 
     <table>
         <thead>
@@ -131,6 +139,7 @@ foreach ($bookingRows as $row) {
             <option value="pending" <?php if ($statusFilter === 'pending') echo 'selected'; ?>>Pending</option>
             <option value="approved" <?php if ($statusFilter === 'approved') echo 'selected'; ?>>Approved</option>
             <option value="rejected" <?php if ($statusFilter === 'rejected') echo 'selected'; ?>>Rejected</option>
+            <option value="on display or adopted" <?php if ($statusFilter === 'on display or adopted') echo 'selected'; ?>>On display or adopted</option>
         </select>
         <noscript><button type="submit">Filter</button></noscript>
     </form>
@@ -160,16 +169,20 @@ foreach ($bookingRows as $row) {
                         <td><?php echo $rescue->location ?></td>
                         <td><?php echo $rescue->date ?></td>
                         <td><?php echo $rescue->desCatName ?></td>
-                        <td><?php echo $rescue->descriptionOfCat ?></td>
-                        <td><?php echo $rescue->descriptionOfEvent ?></td>
+                        <td class = descriptionOfCat><?php echo $rescue->descriptionOfCat ?></td>
+                        <td class = descriptionOfCat><?php echo $rescue->descriptionOfEvent ?></td>
                         <td><?php echo $rescue->status ?></td>
                         <td>
+                            <?php if($rescue->status != 'on display or adopted'):?>
+
                             <a href="employeeAccount.php?approve=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Approve</a>
                             <a href="employeeAccount.php?reject=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Reject</a>
                             
                             <!-- transfer -->
                             <?php if ($rescue->status === 'approved'): ?>
                                 <a href="addCat.php?rescueId=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Add to Cats</a>
+                            <?php endif; ?>
+
                             <?php endif; ?>
                         </td>
                     </tr>
