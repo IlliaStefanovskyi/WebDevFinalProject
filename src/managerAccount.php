@@ -59,16 +59,29 @@ if (isset($_POST['addEmployee'])) {
     $sql = "INSERT INTO employees (email, password, name, jobTitle, phoneNumber, managerId)
             VALUES (:email, :password, :name, :jobTitle, :phoneNumber, :managerId)";
     $stmt = $connection->prepare($sql);
-    $stmt->execute([
-        'email' => makeSafe($_POST['email']),
-        'password' => makeSafe($_POST['password']),
-        'name' => makeSafe($_POST['name']),
-        'jobTitle' => makeSafe($_POST['jobTitle']),
-        'phoneNumber' => makeSafe($_POST['phoneNumber']),
-        'managerId' => $managerId["managerId"]
-    ]);
-    header("location:managerAccount.php");
-    exit;
+    try {
+        $stmt->execute([
+            'email' => makeSafe($_POST['email']),
+            'password' => makeSafe($_POST['password']),
+            'name' => makeSafe($_POST['name']),
+            'jobTitle' => makeSafe($_POST['jobTitle']),
+            'phoneNumber' => makeSafe($_POST['phoneNumber']),
+            'managerId' => $managerId["managerId"]
+        ]);
+
+        header("location:managerAccount.php");
+        exit;
+
+    } catch (PDOException $error) {
+        if ($error->getCode() == 23000){ 
+            ?>
+            <script>alert("This email is already used by a different employee!")</script>
+            <?php 
+        }
+        else{
+            echo $sql . "<br>" . $error->getMessage();
+        }
+    }
 }
 
 //Remove Employee
@@ -94,10 +107,12 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h1>Manager</h1>
-<h1>Log out</h1>
-<form method="post">
-    <button name="logout" type="logout">Logout</button>
-</form>
+<div class = accountManagementContainer>
+    <h1>Log out</h1>
+    <form method="post">
+        <button name="logout" type="logout">Logout</button>
+    </form>
+</div>
 
 <div class="accountPageContainer">
     <h1>All Rescue Requests</h1>
@@ -123,12 +138,14 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $rescue->location ?></td>
                     <td><?php echo $rescue->date ?></td>
                     <td><?php echo $rescue->desCatName ?></td>
-                    <td><?php echo $rescue->descriptionOfCat ?></td>
-                    <td><?php echo $rescue->descriptionOfEvent ?></td>
+                    <td class = descriptionOfCat><?php echo $rescue->descriptionOfCat ?></td>
+                    <td class = descriptionOfCat><?php echo $rescue->descriptionOfEvent ?></td>
                     <td><?php echo $rescue->status ?></td>
                     <td>
+                        <?php if($rescue -> status != "on display or adopted"): ?>
                         <a href="managerAccount.php?approve=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Approve</a>
                         <a href="managerAccount.php?reject=<?php echo makeSafe($rescue->rescueId); ?>" class="buttonLink">Reject</a>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -139,7 +156,7 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="accountPageContainer">
     <h1>Manage Employees</h1>
 
-    <form method="post">
+    <form method="post" id = "newEmployeeForm">
         <h3>Add New Employee</h3>
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email" required>
@@ -203,7 +220,7 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
     });
 
     //For adding employees
-    const addEmployeeForm = document.querySelector('form[method="post"]');
+    const addEmployeeForm = document.querySelector('#newEmployeeForm');
     if (addEmployeeForm) {
         addEmployeeForm.addEventListener('submit', function (e) {
             const email = addEmployeeForm.querySelector('input[name="email"]').value.trim();
