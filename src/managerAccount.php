@@ -227,6 +227,7 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const password = addEmployeeForm.querySelector('input[name="password"]').value.trim();
             const phone = addEmployeeForm.querySelector('input[name="phoneNumber"]').value.trim();
 
+            //tests for password and phone number correctness
             if (password.length < 8 || !/[A-Za-z]/.test(password) || !/\d/.test(password)) {
                 alert("Password must be at least 8 characters long and include letters and numbers!");
                 e.preventDefault();
@@ -234,11 +235,6 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (!/^[0-9]{7,10}$/.test(phone)) {
                 alert("Phone number must be 7 to 10 digits!");
-                e.preventDefault();
-            }
-
-            if (!email.includes("@")) {
-                alert("Enter a valid email!");
                 e.preventDefault();
             }
         });
